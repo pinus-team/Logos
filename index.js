@@ -11,7 +11,7 @@ app.set("view engine", "ejs");
 import { endpoints } from "./routes/endpoints.js";
 
 app.use(express.static("public"));
-app.use(express.static("/node_modules/tw-elements/dist/js"));
+app.use(express.static("node_modules/tw-elements/dist/js"));
 
 for (const endpoint of endpoints) {
 	app[endpoint.method](endpoint.path, endpoint.handler);

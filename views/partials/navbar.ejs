@@ -1,0 +1,27 @@
+<div class="top-0 sticky shadow-lg z-[1020] text-stone-50 flex flex-col h-fit">
+	<div
+		class="px-4 flex flex-row items-center justify-between bg-stone-900 h-16">
+		<a href="/" class="flex flex-row items-center px-5 select-none">
+			<img src="/img/Pinus_Sylvestris.webp" class="h-12" />
+			<h1 class="font-serif text-3xl mx-4 hidden md:block"><%= title %></h1>
+		</a>
+		<%- include('./nav'); %>
+	</div>
+	<div id="cart" class="transition-all collapse">
+		<div class="flex p-4 md:p-9 pt-2 flex-col md:flex-row gap-2 h-full-with-nav bg-stone-900">
+			<div
+				class="flex flex-col gap-2 md:hidden transition-all text-inherit justify-items-start text-base font-bold">
+				<% endpoints.forEach((endpoint) => { %>
+				<a
+					href="<%= endpoint.url %>"
+					class="transition-all hover:text-stone-400">
+					<%= endpoint.name %>
+				</a>
+				<% }); %>
+				<a href="/login" class="transition-all hover:text-stone-400">
+					My Profile
+				</a>
+			</div>
+		</div>
+	</div>
+</div>

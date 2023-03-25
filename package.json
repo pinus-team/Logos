@@ -5,8 +5,8 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "start": "postcss public/styles/tailwind.css -o public/styles/style.css && node index.js",
-    "serve": "concurrently \"pnpm run tailwind:watch\" \"nodemon\"",
+    "start": "postcss tailwind.css -o public/styles/style.css && node index.js",
+    "serve": "concurrently \"nodemon\" \"pnpm run tailwind:watch\"",
     "tailwind:watch": "postcss tailwind.css -o public/styles/style.css --watch",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

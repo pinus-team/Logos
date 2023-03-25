@@ -1,7 +1,7 @@
 import express from "express";
-import "dotenv/config.js";
 
 const app = express();
+const port = process.env.PORT ? process.env.PORT: 3000
 
 app.use(express.urlencoded({ extended: true }));
 app.set("views", "views");
@@ -16,6 +16,7 @@ for (const endpoint of endpoints) {
 	app[endpoint.method](endpoint.path, endpoint.handler);
 }
 
-app.listen(process.env.PORT, function () {
-	console.log(`Server started on port ${process.env.PORT}`);
+
+app.listen(port, function () {
+	console.log(`Server started on port ${port}`);
 });

@@ -30,6 +30,5 @@ jobs:
           mkdir logos
           cp docker-compose.yaml logos/docker-compose.yaml
           cd logos
-          docker-compose -H tcp://${{ secrets.HOST_SERVER }} down
           docker-compose -H tcp://${{ secrets.HOST_SERVER }} pull
           docker-compose -H tcp://${{ secrets.HOST_SERVER }} up -d

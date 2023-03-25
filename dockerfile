@@ -12,6 +12,5 @@ RUN pnpm install
 
 COPY . .
 
-ENV PORT=8080
-EXPOSE 8080
+EXPOSE 3000
 CMD [ "pnpm", "run", "start" ]

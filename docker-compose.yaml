@@ -2,6 +2,5 @@ services:
   frontend:
     image: mansmooth/logos:latest
     restart: unless-stopped
-    environment:
     ports:
       - "80:3000"

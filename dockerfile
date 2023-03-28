@@ -10,7 +10,11 @@ COPY package.json pnpm-lock.yaml /usr/src/app/
 
 RUN pnpm install
 
-COPY . .
+COPY ./public/ ./public/
+COPY ./routes/ ./routes/
+COPY ./views/ ./views/
+COPY ./* .
+
 
 EXPOSE 3000
 CMD [ "pnpm", "run", "start" ]

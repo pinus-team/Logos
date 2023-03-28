@@ -13,7 +13,8 @@ RUN pnpm install
 COPY ./public/ ./public/
 COPY ./routes/ ./routes/
 COPY ./views/ ./views/
-COPY ./* .
+COPY index.js postcss.config.cjs tailwind.config.cjs tailwind.css ./
+
 
 
 EXPOSE 3000

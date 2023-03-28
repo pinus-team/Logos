@@ -1,6 +1,8 @@
 services:
   frontend:
     image: mansmooth/logos:latest
+    environment:
+      - jwt_secret=${JWT_SECRET}
     restart: unless-stopped
     ports:
       - "80:3000"

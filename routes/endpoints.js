@@ -2,6 +2,8 @@ import home from "./home.js";
 import not_found from "./not-found.js";
 import support from "./support.js";
 import story from "./story.js";
+import { loginGetHandler, loginPostHandler } from "./login.js";
+import { registerGetHandler } from "./register.js";
 
 export const endpoints = [
 	{
@@ -24,6 +26,27 @@ export const endpoints = [
 		path: "/story",
 		method: "get",
 		handler: story,
+	},
+	{
+		name: "Login",
+		on_navbar: false,
+		path: "/login",
+		method: "get",
+		handler: loginGetHandler,
+	},
+	{
+		name: "Login",
+		on_navbar: false,
+		path: "/login",
+		method: "post",
+		handler: loginPostHandler,
+	},
+	{
+		name: "Register",
+		on_navbar: false,
+		path: "/register",
+		method: "get",
+		handler: registerGetHandler,
 	},
 	{
 		name: "Page Not Found",

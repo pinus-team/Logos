@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<%- include('./partials/head'); %>
+	</head>
+	<body
+		class="flex flex-col font-sans text-stone-50 bg-stone-900 overflow-hidden relative h-[100vh]">
+		<rect
+			class="w-full h-full absolute -z-50 bg-logos opacity-10"></rect>
+		<%- include('./partials/navbar'); %>
+		<form
+			class="flex flex-col bg-stone-50 m-auto p-12 shadow-md text-stone-900 gap-4 w-[90%] md:w-[480px]" action="/login" method="post">
+			<div class="flex font-sans justify-center items-center gap-2">
+				<p class="text-3xl md:text-5xl font-bold">Pinus</p>
+				<div class="flex flex-col place-content-center gap-1">
+					<p class="p-0 md:py-1 text-2xl md:text-3xl font-bold">Sylvestris</p>
+					<hr class="border-0 border-t-2 border-primary" />
+				</div>
+			</div>
+			<p class="text-stone-500 text-center text-xs md:text-base">
+				Sign in to an existing account.
+			</p>
+			<div class="flex flex-col gap-1">
+				<label for="username" class="text-xs md:text-base font-bold"
+					>Username</label
+				>
+				<input
+					type="text"
+					class="transition-all bg-stone-200 p-2 focus:bg-stone-400 focus:outline-stone-600 text-xs md:text-base"
+					name="username"
+					id="username" required/>
+			</div>
+			<div class="flex flex-col gap-1">
+				<label for="password" class="text-xs md:text-base font-bold"
+					>Password</label
+				>
+				<input
+					type="password"
+					class="transition-all bg-stone-200 p-2 focus:bg-stone-400 focus:outline-stone-600 text-xs md:text-base"
+					name="password"
+					id="password" required/>
+				<a href="#" class="text-stone-500 underline place-self-end text-xs md:text-base"
+					>Forgot password?</a
+				>
+			</div>
+			<div class="flex flex-col">
+				<button class="bg-primary p-2 mt-4 font-bold" type="submit">
+					Login
+				</button>
+                <a href="/register" class="text-stone-500 underline place-self-center text-xs md:text-base"
+					>I don't have an account.</a
+				>
+			</div>
+		</form>
+	</body>
+	<footer><%- include('./partials/footer'); %></footer>
+</html>

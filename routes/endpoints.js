@@ -2,6 +2,8 @@ import home from "./home.js";
 import not_found from "./not-found.js";
 import support from "./support.js";
 import story from "./story.js";
+import delivery from "./delivery.js";
+
 
 export const endpoints = [
 	{
@@ -24,6 +26,13 @@ export const endpoints = [
 		path: "/story",
 		method: "get",
 		handler: story,
+	},
+	{
+		name: "Delivery",
+		on_navbar: false,
+		path: "/N59Zg7/delivery",
+		method: "get",
+		handler: delivery,
 	},
 	{
 		name: "Page Not Found",

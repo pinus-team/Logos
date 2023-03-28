@@ -3,7 +3,7 @@ import not_found from "./not-found.js";
 import support from "./support.js";
 import story from "./story.js";
 import { loginGetHandler, loginPostHandler } from "./login.js";
-import { registerGetHandler } from "./register.js";
+import { registerGetHandler, registerPostHandler } from "./register.js";
 
 export const endpoints = [
 	{
@@ -47,6 +47,13 @@ export const endpoints = [
 		path: "/register",
 		method: "get",
 		handler: registerGetHandler,
+	},
+	{
+		name: "Register",
+		on_navbar: false,
+		path: "/register",
+		method: "post",
+		handler: registerPostHandler,
 	},
 	{
 		name: "Page Not Found",

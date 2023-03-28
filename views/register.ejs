@@ -27,6 +27,7 @@
 				<input
 					type="text"
 					class="transition-all bg-stone-200 p-2 focus:bg-stone-400 focus:outline-stone-600 text-xs md:text-base"
+					pattern="([-!#-'*+/-9=?A-Z^-~]+(\.[-!#-'*+/-9=?A-Z^-~]+)*|&quot;([]!#-[^-~ \t]|(\\[\t -~]))+&quot;)@([-!#-'*+/-9=?A-Z^-~]+(\.[-!#-'*+/-9=?A-Z^-~]+)*|\[[\t -Z^-~]*])"
 					name="email"
 					id="email" required/>
 			</div>
@@ -51,34 +52,34 @@
 					id="password" required/>
 			</div>
 			<div class="flex flex-col gap-1">
-				<label for="firstName" class="text-xs md:text-base font-bold"
+				<label for="first_name" class="text-xs md:text-base font-bold"
 					>First name</label
 				>
 				<input
 					type="text"
 					class="transition-all bg-stone-200 p-2 focus:bg-stone-400 focus:outline-stone-600 text-xs md:text-base"
-					name="firstName"
-					id="firstName" required/>
+					name="first_name"
+					id="first_name" required/>
 			</div>
 			<div class="flex flex-col gap-1">
-				<label for="lastName" class="text-xs md:text-base font-bold"
+				<label for="last_name" class="text-xs md:text-base font-bold"
 					>Last name</label
 				>
 				<input
 					type="text"
 					class="transition-all bg-stone-200 p-2 focus:bg-stone-400 focus:outline-stone-600 text-xs md:text-base"
-					name="lastName"
-					id="lastName" required/>
+					name="last_name"
+					id="last_name" required/>
 			</div>
 			<div class="flex flex-col gap-1">
-				<label for="phone" class="text-xs md:text-base font-bold"
+				<label for="phone_number" class="text-xs md:text-base font-bold"
 					>Phone</label
 				>
 				<input
 					type="tel"
 					class="transition-all bg-stone-200 p-2 focus:bg-stone-400 focus:outline-stone-600 text-xs md:text-base"
-					name="phone"
-					id="phone"
+					name="phone_number"
+					id="phone_number"
 					pattern="0[0-9]{9}"
 					required/>
 			</div>

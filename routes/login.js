@@ -1,4 +1,4 @@
-import { getNameAndPath } from "./endpoints.js";
+import { getNameAndPath, host } from "./endpoints.js";
 import axios from "axios";
 
 export const loginGetHandler = (req, res) => {
@@ -6,7 +6,7 @@ export const loginGetHandler = (req, res) => {
 }
 
 export const loginPostHandler = (req, res) => {
-    axios.post("http://localhost:8000/auth/login", req.body).then(
+    axios.post(`http://${host}:8000/auth/login`, req.body).then(
         (response) => {
             res.cookie("token", response.data);
             res.redirect("/profile");

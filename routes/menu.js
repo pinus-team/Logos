@@ -1,4 +1,4 @@
-import { getNameAndPath } from "./endpoints.js";
+import { getNameAndPath, host } from "./endpoints.js";
 import axios from "axios";
 
 const categories = [
@@ -13,7 +13,7 @@ const categories = [
 export const menuGetHandler = async (req, res) => {
 	if (req.query.category) {
 		const food_list = await axios
-			.get(`http://localhost:8000/dish/${req.query.category}`)
+			.get(`http://${host}:8000/dish/${req.query.category}`)
 			.then((result) => {
 				return result.data;
 			});
@@ -25,7 +25,7 @@ export const menuGetHandler = async (req, res) => {
 		});
 	} else {
 		const food_list = await axios
-			.get("http://localhost:8000/dish/")
+			.get(`http://${host}:8000/dish/`)
 			.then((result) => {
 				return result.data;
 			});

@@ -6,6 +6,8 @@ import { loginGetHandler, loginPostHandler } from "./login.js";
 import { registerGetHandler, registerPostHandler } from "./register.js";
 import { menuGetHandler } from "./menu.js";
 
+export const host = process.env.host || "127.0.0.1";
+
 export const endpoints = [
 	{
 		name: "Home",

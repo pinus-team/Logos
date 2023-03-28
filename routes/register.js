@@ -1,4 +1,4 @@
-import { getNameAndPath } from "./endpoints.js";
+import { getNameAndPath, host } from "./endpoints.js";
 import axios from "axios";
 
 export const registerGetHandler = (req, res) => {
@@ -10,7 +10,7 @@ export const registerGetHandler = (req, res) => {
 
 export const registerPostHandler = (req, res) => {
     req.body.role = 0;
-	axios.post("http://localhost:8000/auth/register", req.body).then(
+	axios.post(`http://${host}:8000/auth/register`, req.body).then(
 		(response) => {
 			res.redirect("/login");
 		},

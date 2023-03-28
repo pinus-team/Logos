@@ -6,6 +6,14 @@ export const loginGetHandler = (req, res) => {
 }
 
 export const loginPostHandler = (req, res) => {
-    axios.post("http://localhost:8000/auth/login", req.body)
-    // res.redirect("/");
+    axios.post("http://localhost:8000/auth/login", req.body).then(
+        (response) => {
+            res.cookie("token", response.data);
+            res.redirect("/profile");
+        },
+        (error) => {
+            console.log(error);
+            res.redirect("/login");
+        }
+    )
 }

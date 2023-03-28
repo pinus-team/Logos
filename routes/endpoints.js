@@ -4,6 +4,7 @@ import support from "./support.js";
 import story from "./story.js";
 import { loginGetHandler, loginPostHandler } from "./login.js";
 import { registerGetHandler, registerPostHandler } from "./register.js";
+import { menuGetHandler } from "./menu.js";
 
 export const endpoints = [
 	{
@@ -12,6 +13,13 @@ export const endpoints = [
 		path: "/",
 		method: "get",
 		handler: home,
+	},
+	{
+		name: "Menu",
+		on_navbar: true,
+		path: "/menu",
+		method: "get",
+		handler: menuGetHandler,
 	},
 	{
 		name: "Support",

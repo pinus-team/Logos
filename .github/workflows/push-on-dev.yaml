@@ -30,6 +30,7 @@ jobs:
                   push: true
                   tags: ${{ secrets.DOCKER_USERNAME }}/logos:latest
     deploy:
+        needs: push-image
         runs-on: ubuntu-latest
         steps:
             - name: Checkout

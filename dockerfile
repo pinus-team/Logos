@@ -13,6 +13,7 @@ RUN pnpm install
 COPY ./public/ ./public/
 COPY ./mock_data/ ./mock_data/
 COPY ./routes/ ./routes/
+COPY ./middleman/ ./middleman/
 COPY ./views/ ./views/
 COPY index.js postcss.config.cjs tailwind.config.cjs tailwind.css ./
 

@@ -2,10 +2,12 @@
 <html lang="en">
 	<head>
 		<%- include('./partials/head'); %>
+		<script src="/js/menu.js"></script>
 	</head>
 	<body class="flex flex-col font-sans text-stone-50 bg-news relative">
 		<%- include('./partials/navbar'); %> <%-
 		include('./partials/promotion'); %>
+		<div class="btn-active" hidden></div>
 		<div class="m-4 md:m-8 flex flex-col text-stone-900 gap-4">
 			<p class="font-semibold">Categories</p>
 			<div class="px-4">

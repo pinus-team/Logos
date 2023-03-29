@@ -37,3 +37,8 @@ export const menuGetHandler = async (req, res) => {
 		});
 	}
 };
+
+export const menuPostHandler = async (req, res) => {
+	console.log(req.body);
+	res.status(200).send("OK")
+};

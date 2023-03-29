@@ -7,11 +7,11 @@ import { loginGetHandler, loginPostHandler } from "./login.js";
 import { registerGetHandler, registerPostHandler } from "./register.js";
 import { menuGetHandler } from "./menu.js";
 import dotenv from "dotenv";
+import { addressGetHandler, profileGetHandler, profilePostHandler } from "./profile.js";
 
 dotenv.config();
 
 export const host = process.env.HOST || "127.0.0.1";
-
 
 export const endpoints = [
 	{
@@ -53,8 +53,8 @@ export const endpoints = [
 		path: "/N59Zg7/delivery",
 		method: "get",
 		handler: delivery,
-  },
-  {
+	},
+	{
 		name: "Login",
 		on_navbar: false,
 		auth_required: false,
@@ -87,6 +87,30 @@ export const endpoints = [
 		handler: registerPostHandler,
 	},
 	{
+		name: "Profile",
+		on_navbar: false,
+		auth_required: true,
+		path: "/profile",
+		method: "get",
+		handler: profileGetHandler,
+	},
+	{
+		name: "Address",
+		on_navbar: false,
+		auth_required: true,
+		path: "/profile/address",
+		method: "get",
+		handler: addressGetHandler,
+	},
+	{
+		name: "Change Profile",
+		on_navbar: false,
+		auth_required: true,
+		path: "/profile*",
+		method: "post",
+		handler: profilePostHandler,
+	},
+	{
 		name: "Page Not Found",
 		on_navbar: false,
 		auth_required: false,
@@ -94,16 +118,17 @@ export const endpoints = [
 		method: "get",
 		handler: not_found,
 	},
-
 ];
 
 export function getNameAndPath() {
-	return endpoints.filter((endpoint) => {
-		return endpoint.on_navbar;
-	}).map((endpoint) => {
-		return {
-			name: endpoint.name,
-			path: endpoint.path,
-		};
-	});
+	return endpoints
+		.filter((endpoint) => {
+			return endpoint.on_navbar;
+		})
+		.map((endpoint) => {
+			return {
+				name: endpoint.name,
+				path: endpoint.path,
+			};
+		});
 }

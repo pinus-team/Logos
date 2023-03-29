@@ -22,6 +22,7 @@ export const menuGetHandler = async (req, res) => {
 			endpoints: getNameAndPath(),
 			categories,
 			food_list,
+			user: req.user_data,
 		});
 	} else {
 		const food_list = await axios
@@ -34,11 +35,12 @@ export const menuGetHandler = async (req, res) => {
 			endpoints: getNameAndPath(),
 			categories,
 			food_list,
+			user: req.user_data,
 		});
 	}
 };
 
 export const menuPostHandler = async (req, res) => {
 	console.log(req.body);
-	res.status(200).send("OK")
+	res.status(200).send("OK");
 };

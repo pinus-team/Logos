@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<%- include('./partials/head'); %>
+        <script src="/js/profile.js"></script>
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI="crossorigin=""/>
+        <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM="crossorigin=""></script>
+	</head>
+	<body
+		class="font-sans text-stone-900 bg-stone-100 relative" onload="createMap('map', '<%= user.address.latitude %>', '<%= user.address.longitude %>')">
+        <%- include('./partials/navbar'); %>
+        <div class="flex flex-col gap-8 p-8">
+            <p class="text-xl lg:text-3xl text-center lg:text-left">My Account</p>
+            <div class="flex flex-col lg:flex-row gap-8">
+                <div class="flex flex-row lg:flex-col items-start w-full justify-around lg:justify-start lg:w-1/12 gap-4">
+                    <a class="text-sm lg:text-base flex-1 lg:flex-none px-4 py-2 lg:p-0 shadow-md lg:shadow-none bg-stone-50 lg:bg-transparent" href="/profile">My Profile</a>
+                    <a class="font-bold text-sm lg:text-base flex-1 lg:flex-none px-4 py-2 lg:p-0 shadow-md lg:shadow-none bg-stone-50 lg:bg-transparent" href="/profile/address">My Address</a>
+                    <a class="text-sm lg:text-base flex-1 lg:flex-none px-4 py-2 lg:p-0 shadow-md lg:shadow-none bg-stone-50 lg:bg-transparent" href="/profile/orders">My Orders</a>
+                </div>
+                <div class="flex flex-col flex-1 shadow-md bg-stone-50 p-8 gap-4">
+                    <p class="text-xl lg:text-3xl" >My Address</p>
+                    <div class="flex flex-col gap-2">
+                        <p class="text-sm lg:text-base">Primary Address</p>
+                        <hr
+                            class="border-0 border-b border-stone-900 opacity-80" />
+                    </div>
+                    <div class="flex flex-col lg:flex-row justify-between gap-4">
+                        <div class="flex flex-col gap-4 flex-1">
+                            <p class="text-3xs lg:text-xs">Your data will not be shared on any other platform.</p>
+                            <div id="map" class="w-full aspect-square"></div>
+                        </div>
+                        <form id="address" class="flex flex-col gap-4 flex-1 grow-[2]" method="post">
+                            <div class="flex flex-col gap-1">
+                                <label for="first_name" class="text-xs lg:text-base font-bold"
+                                    >Address</label
+                                >
+                                <input
+                                    type="text"
+                                    class="transition-all p-2 bg-stone-50 border border-stone-900 disabled:border-none disabled:bg-stone-200 focus:bg-stone-200 focus:outline-stone-600 text-xs lg:text-base"
+                                    name="address"
+                                    id="address"
+                                    value="<%= user.address.address %>"
+                                    disabled
+                                    required/>
+                            </div>
+                            <div class="flex flex-col gap-1">
+                                <label for="city" class="text-xs lg:text-base font-bold"
+                                    >City</label
+                                >
+                                <input
+                                    type="text"
+                                    class="transition-all p-2 bg-stone-50 border border-stone-900 disabled:border-none disabled:bg-stone-200 focus:bg-stone-200 focus:outline-stone-600 text-xs lg:text-base"
+                                    name="city"
+                                    value="<%= user.address.city %>"
+                                    disabled
+                                    id="city" required/>
+                            </div>
+                            <div class="flex flex-col gap-1">
+                                <label for="province" class="text-xs lg:text-base font-bold"
+                                    >Province</label
+                                >
+                                <input
+                                    type="text"
+                                    class="transition-all p-2 bg-stone-50 border border-stone-900 disabled:border-none disabled:bg-stone-200 focus:bg-stone-200 focus:outline-stone-600 text-xs lg:text-base"
+                                    name="province"
+                                    value="<%= user.address.province %>"
+                                    disabled
+                                    id="province" required/>
+                            </div>
+                            <div class="flex flex-col gap-1">
+                                <label for="zip_code" class="text-xs lg:text-base font-bold"
+                                    >Postal Code</label
+                                >
+                                <input
+                                    type="text"
+                                    class="transition-all p-2 bg-stone-50 border border-stone-900 disabled:border-none disabled:bg-stone-200 focus:bg-stone-200 focus:outline-stone-600 text-xs lg:text-base"
+                                    name="zip_code"
+                                    id="zip_code"
+                                    value="<%= user.address.zip_code %>"
+                                    pattern="[0-9]{5}"
+                                    disabled
+                                    required/>
+                            </div>
+                            <div class="flex flex-row px-4 py-2 gap-4">
+                                <input type="checkbox" name="change_latlon" id="change_latlon" class="" />
+                                <label for="change_latlon" class="text-xs lg:text-base"
+                                    >Opt out of Geolocation service. <i>(This will also send lat-lon along with your address.)</i></label>
+                            </div>
+                            <div class="flex flex-row gap-4">
+                                <div class="flex flex-col gap-1 flex-1">
+                                    <label for="latitude" class="text-xs lg:text-base font-bold"
+                                        >Latitude</label
+                                    >
+                                    <input
+                                        type="number"
+                                        step="any"
+                                        class="transition-all p-2 bg-stone-50 border border-stone-900 disabled:border-none disabled:bg-stone-200 focus:bg-stone-200 focus:outline-stone-600 text-xs lg:text-base"
+                                        name="latitude"
+                                        id="latitude"
+                                        value="<%= user.address.latitude %>"
+                                        disabled
+                                        required/>
+                                </div>
+                                <div class="flex flex-col gap-1 flex-1">
+                                    <label for="longitude" class="text-xs lg:text-base font-bold"
+                                        >Longitude</label
+                                    >
+                                    <input
+                                        type="number"
+                                        step="any"
+                                        class="transition-all p-2 bg-stone-50 border border-stone-900 disabled:border-none disabled:bg-stone-200 focus:bg-stone-200 focus:outline-stone-600 text-xs lg:text-base"
+                                        name="longitude"
+                                        id="longitude"
+                                        value="<%= user.address.longitude %>"
+                                        disabled
+                                        required/>
+                                </div>
+                            </div>
+
+                            <div class="flex flex-row justify-between gap-4">
+                                <button
+                                    type="button"
+                                    class="transition-all bg-primary p-2 text-stone-900 text-xs lg:text-base flex-1 shadow-md"
+                                    onclick="enableEdit(this, '#address')"
+                                >
+                                    Edit
+                                </button>
+                                <button
+                                    type="submit"
+                                    class="transition-all bg-primary p-2 text-stone-900 text-xs lg:text-base flex-1 shadow-md disabled:saturate-0"
+                                    disabled
+                                >
+                                    Save
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+	</body>
+	<footer><%- include('./partials/footer'); %>
+</html>

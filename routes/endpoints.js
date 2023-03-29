@@ -7,18 +7,26 @@ import restaurant from "./restaurant.js";
 import history from "./history.js";
 import summary from "./summary.js";
 
-
-import { loginGetHandler, loginPostHandler } from "./login.js";
+import { loginGetHandler, loginPostHandler, logoutHandler } from "./login.js";
 import { registerGetHandler, registerPostHandler } from "./register.js";
 import { menuGetHandler } from "./menu.js";
+import dotenv from "dotenv";
+import {
+	addressGetHandler,
+	profileGetHandler,
+	profilePostHandler,
+} from "./profile.js";
 
-export const host = process.env.host || "127.0.0.1";
+dotenv.config();
 
+export const host = process.env.HOST || "127.0.0.1";
+console.log(`Host: ${host}`);
 
 export const endpoints = [
 	{
 		name: "Home",
 		on_navbar: false,
+		auth_required: 0,
 		on_private_navbar: false,
 		path: "/",
 		method: "get",
@@ -27,6 +35,7 @@ export const endpoints = [
 	{
 		name: "Menu",
 		on_navbar: true,
+		auth_required: 0,
 		on_private_navbar: false,
 		path: "/menu",
 		method: "get",
@@ -35,6 +44,7 @@ export const endpoints = [
 	{
 		name: "Support",
 		on_navbar: true,
+		auth_required: 0,
 		on_private_navbar: false,
 		path: "/support",
 		method: "get",
@@ -43,6 +53,7 @@ export const endpoints = [
 	{
 		name: "Story",
 		on_navbar: true,
+		auth_required: 0,
 		on_private_navbar: false,
 		path: "/story",
 		method: "get",
@@ -51,46 +62,43 @@ export const endpoints = [
 	{
 		name: "Delivery",
 		on_navbar: false,
-		on_private_navbar: false,
-		path: "/N59Zg7/delivery",
+		auth_required: 2,
+		on_private_navbar: true,
+		path: "/restaurant/delivery",
 		method: "get",
 		handler: delivery,
-  },
-  {
-	name: "Today",
-	on_navbar: false,
-	on_private_navbar: true,
-	path: "/N59Zg7/restaurant",
-	method: "get",
-	handler: restaurant,
-},
-{
-	name: "History",
-	on_navbar: false,
-	on_private_navbar: true,
-	path: "/N59Zg7/history",
-	method: "get",
-	handler: history,
-},
-{
-	name: "Summary",
-	on_navbar: false,
-	on_private_navbar: true,
-	path: "/N59Zg7/summary",
-	method: "get",
-	handler: summary,
-},
-
-
-
-
-
-
-
-
-  {
+	},
+	{
+		name: "Today",
+		on_navbar: false,
+		auth_required: 2,
+		on_private_navbar: true,
+		path: "/restaurant",
+		method: "get",
+		handler: restaurant,
+	},
+	{
+		name: "History",
+		on_navbar: false,
+		auth_required: 2,
+		on_private_navbar: true,
+		path: "/restaurant/history",
+		method: "get",
+		handler: history,
+	},
+	{
+		name: "Summary",
+		on_navbar: false,
+		auth_required: 2,
+		on_private_navbar: true,
+		path: "/restaurant/summary",
+		method: "get",
+		handler: summary,
+	},
+	{
 		name: "Login",
 		on_navbar: false,
+		auth_required: 0,
 		on_private_navbar: false,
 		path: "/login",
 		method: "get",
@@ -99,14 +107,25 @@ export const endpoints = [
 	{
 		name: "Login",
 		on_navbar: false,
+		auth_required: 0,
 		on_private_navbar: false,
 		path: "/login",
 		method: "post",
 		handler: loginPostHandler,
 	},
 	{
+		name: "Logout",
+		on_navbar: false,
+		auth_required: 1,
+		on_private_navbar: false,
+		path: "/logout",
+		method: "get",
+		handler: logoutHandler,
+	},
+	{
 		name: "Register",
 		on_navbar: false,
+		auth_required: 0,
 		on_private_navbar: false,
 		path: "/register",
 		method: "get",
@@ -115,40 +134,69 @@ export const endpoints = [
 	{
 		name: "Register",
 		on_navbar: false,
+		auth_required: 0,
 		on_private_navbar: false,
 		path: "/register",
 		method: "post",
 		handler: registerPostHandler,
 	},
 	{
+		name: "Profile",
+		on_navbar: false,
+		auth_required: 1,
+		path: "/profile",
+		method: "get",
+		handler: profileGetHandler,
+	},
+	{
+		name: "Address",
+		on_navbar: false,
+		auth_required: 1,
+		path: "/profile/address",
+		method: "get",
+		handler: addressGetHandler,
+	},
+	{
+		name: "Change Profile",
+		on_navbar: false,
+		auth_required: 1,
+		path: "/profile*",
+		method: "post",
+		handler: profilePostHandler,
+	},
+	{
 		name: "Page Not Found",
 		on_navbar: false,
+		auth_required: 0,
 		on_private_navbar: false,
 		path: "*",
 		method: "get",
 		handler: not_found,
 	},
-
 ];
 
 export function getNameAndPath() {
-	return endpoints.filter((endpoint) => {
-		return endpoint.on_navbar;
-	}).map((endpoint) => {
-		return {
-			name: endpoint.name,
-			path: endpoint.path,
-		};
-	});
+	return endpoints
+		.filter((endpoint) => {
+			return endpoint.on_navbar;
+		})
+		.map((endpoint) => {
+			return {
+				name: endpoint.name,
+				path: endpoint.path,
+			};
+		});
 }
 
 export function getPrivateNameAndPath() {
-	return endpoints.filter((endpoint) => {
-		return endpoint.on_private_navbar;
-	}).map((endpoint) => {
-		return {
-			name: endpoint.name,
-			path: endpoint.path,
-		};
-	});
+	return endpoints
+		.filter((endpoint) => {
+			return endpoint.on_private_navbar;
+		})
+		.map((endpoint) => {
+			return {
+				name: endpoint.name,
+				path: endpoint.path,
+			};
+		});
 }

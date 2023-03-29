@@ -4,6 +4,8 @@ services:
     environment:
       - host=172.17.0.1
       - jwt_secret=${JWT_SECRET}
+      # epic
+      - GEOLOC_API_KEY=dd56c76afc924c9176dca026d02a6367
     restart: unless-stopped
     ports:
       - "80:3000"

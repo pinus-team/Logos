@@ -25,3 +25,8 @@ export const loginPostHandler = (req, res) => {
 		}
 	);
 };
+
+export const logoutHandler = (req, res) => {
+    res.clearCookie("pinus_jwt");
+    res.redirect("/");
+}

@@ -10,7 +10,7 @@ const API_KEY = process.env.GEOLOC_API_KEY;
 
 export const profileGetHandler = async (req, res) => {
 	const user = await axios
-		.get(`http://${host}:8000/user/${req.user_data.user_id}`)
+		.get(`http://${host}:8000/user/${req.user_data._id}`)
 		.then((result) => {
 			return result.data;
 		});
@@ -23,7 +23,7 @@ export const profileGetHandler = async (req, res) => {
 
 export const addressGetHandler = async (req, res) => {
 	const user = await axios
-		.get(`http://${host}:8000/user/${req.user_data.user_id}`)
+		.get(`http://${host}:8000/user/${req.user_data._id}`)
 		.then((result) => {
 			return result.data;
 		});
@@ -57,7 +57,7 @@ export const profilePostHandler = async (req, res) => {
 			address: req.body,
 		};
 	}
-	req.body._id = req.user_data.user_id;
+	req.body._id = req.user_data._id;
 	await axios.post(`http://${host}:8000/user/`, req.body).catch((err) => {
 		console.log(
 			util.inspect(err.response.data.errInfo.details, { depth: 10 })

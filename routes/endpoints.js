@@ -7,7 +7,7 @@ import restaurant from "./restaurant.js";
 import history from "./history.js";
 import summary from "./summary.js";
 
-import { loginGetHandler, loginPostHandler } from "./login.js";
+import { loginGetHandler, loginPostHandler, logoutHandler } from "./login.js";
 import { registerGetHandler, registerPostHandler } from "./register.js";
 import { menuGetHandler } from "./menu.js";
 import dotenv from "dotenv";
@@ -20,6 +20,7 @@ import {
 dotenv.config();
 
 export const host = process.env.HOST || "127.0.0.1";
+console.log(`Host: ${host}`);
 
 export const endpoints = [
 	{
@@ -63,7 +64,7 @@ export const endpoints = [
 		on_navbar: false,
 		auth_required: 2,
 		on_private_navbar: true,
-		path: "/N59Zg7/delivery",
+		path: "/restaurant/delivery",
 		method: "get",
 		handler: delivery,
 	},
@@ -72,7 +73,7 @@ export const endpoints = [
 		on_navbar: false,
 		auth_required: 2,
 		on_private_navbar: true,
-		path: "/N59Zg7/restaurant",
+		path: "/restaurant",
 		method: "get",
 		handler: restaurant,
 	},
@@ -81,7 +82,7 @@ export const endpoints = [
 		on_navbar: false,
 		auth_required: 2,
 		on_private_navbar: true,
-		path: "/N59Zg7/history",
+		path: "/restaurant/history",
 		method: "get",
 		handler: history,
 	},
@@ -90,7 +91,7 @@ export const endpoints = [
 		on_navbar: false,
 		auth_required: 2,
 		on_private_navbar: true,
-		path: "/N59Zg7/summary",
+		path: "/restaurant/summary",
 		method: "get",
 		handler: summary,
 	},
@@ -111,6 +112,15 @@ export const endpoints = [
 		path: "/login",
 		method: "post",
 		handler: loginPostHandler,
+	},
+	{
+		name: "Logout",
+		on_navbar: false,
+		auth_required: 1,
+		on_private_navbar: false,
+		path: "/logout",
+		method: "get",
+		handler: logoutHandler,
 	},
 	{
 		name: "Register",

@@ -13,10 +13,18 @@
           class="bg-white w-full h-full drop-shadow-sm border-2 border-stone-600 p-4"
         >
         <div class="text-left"><p class="text-2xl">History</p></div>
-        <div class="grid grid-cols-4 gap-2">
+        <div class="grid grid-cols-4 gap-2 m-4">
             <!-- Doing task -->
+            <% let currentDate = null; %>
             <% order.sort((a, b) => new Date(a.order_date) - new Date(b.order_date)).forEach((item) => { %>
               <% if (item.status === "Done") { %>
+                <% if (currentDate !== item.order_date) { %>
+                  <div class="col-span-4 text-left mb-4">
+                    <p><%= item.order_date %></p>
+                    <hr class="border-0 border-b-2 border-stone-600" />
+                  </div>
+                  <% currentDate = item.order_date; %>
+                <% } %>
                 <div
                   class="min-h-16 p-2 flex flex-col justify-center border-2 border-stone-600 mb-4 "
                   id="<%= item.order_id %>"
@@ -47,7 +55,6 @@
             <% }); %> 
           </div>
         
-        </div>
     </div>
   </body>
 </html>

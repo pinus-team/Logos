@@ -5,19 +5,50 @@
   </head>
   <body class="font-sans text-stone-900 bg-gray-100">
     <%- include('./partials/navbar'); %>
+ 
     <div
       class="flex text-center justify-center items-center overflow-hidden relative w-full h-full-with-nav snap-start"
     >
-    <div class="grid grid-cols-1 w-full h-full md:grid-cols-2 gap-4 m-4">
-        <div class="bg-green-100 p-4">1</div>
-        <div class="grid grid-rows-2 gap-4">
-            <div class="grid grid-cols-2 ">
-                <div class="bg-red-500">2.1</div>
-                <div class="bg-pink-500">2.2</div>
+    <div class="w-full h-full p-4">
+        <div
+          class=" w-full h-full "
+        >
+
+    <div class="grid grid-cols-1 w-full h-full md:grid-cols-2 gap-4">
+        <div class="bg-white drop-shadow-sm border-2 border-stone-600 p-4">
+            <div class="text-left">
+                <p class="text-xl">Daily</p>
             </div>
-            <div class="bg-red-100 p-4">3</div>
+        </div>
+        <div class="grid grid-rows-2 gap-4">
+            <div class="grid grid-cols-2 gap-4">
+                <div class="bg-white drop-shadow-sm border-2 border-stone-600 p-4">
+                    <div class="text-left">
+                        <p class="text-xl">Monthly</p>
+                    </div>
+                </div>                
+                <div class="bg-white drop-shadow-sm border-2 border-stone-600 p-4">
+                    <div class="text-left">
+                        <p class="text-xl">Yearly</p>
+                    </div>
+                </div>
+            </div>
+            <div class="grid grid-rows-2 gap-4">
+                <div class="bg-white drop-shadow-sm border-2 border-stone-600 p-4">
+                    <div class="text-left">
+                        <p class="text-xl">Mostly</p>
+                    </div>
+                </div>
+                <div class="bg-white drop-shadow-sm border-2 border-stone-600 p-4">
+                    <div class="text-left">
+                        <p class="text-xl">Customer support</p>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
+    </div>
+        
     </div>
   </body>
 </html>

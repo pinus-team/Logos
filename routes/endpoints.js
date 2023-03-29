@@ -2,11 +2,13 @@ import home from "./home.js";
 import not_found from "./not-found.js";
 import support from "./support.js";
 import story from "./story.js";
+import delivery from "./delivery.js";
 import { loginGetHandler, loginPostHandler } from "./login.js";
 import { registerGetHandler, registerPostHandler } from "./register.js";
 import { menuGetHandler } from "./menu.js";
 
 export const host = process.env.host || "127.0.0.1";
+
 
 export const endpoints = [
 	{
@@ -38,6 +40,13 @@ export const endpoints = [
 		handler: story,
 	},
 	{
+		name: "Delivery",
+		on_navbar: false,
+		path: "/N59Zg7/delivery",
+		method: "get",
+		handler: delivery,
+  },
+  {
 		name: "Login",
 		on_navbar: false,
 		path: "/login",

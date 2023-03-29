@@ -17,7 +17,7 @@ export const endpoints = [
 	{
 		name: "Home",
 		on_navbar: false,
-		auth_required: false,
+		auth_required: 0,
 		path: "/",
 		method: "get",
 		handler: home,
@@ -25,7 +25,7 @@ export const endpoints = [
 	{
 		name: "Menu",
 		on_navbar: true,
-		auth_required: false,
+		auth_required: 0,
 		path: "/menu",
 		method: "get",
 		handler: menuGetHandler,
@@ -33,7 +33,7 @@ export const endpoints = [
 	{
 		name: "Support",
 		on_navbar: true,
-		auth_required: false,
+		auth_required: 0,
 		path: "/support",
 		method: "get",
 		handler: support,
@@ -41,7 +41,7 @@ export const endpoints = [
 	{
 		name: "Story",
 		on_navbar: true,
-		auth_required: false,
+		auth_required: 0,
 		path: "/story",
 		method: "get",
 		handler: story,
@@ -49,7 +49,7 @@ export const endpoints = [
 	{
 		name: "Delivery",
 		on_navbar: false,
-		auth_required: false,
+		auth_required: 0,
 		path: "/N59Zg7/delivery",
 		method: "get",
 		handler: delivery,
@@ -57,7 +57,7 @@ export const endpoints = [
 	{
 		name: "Login",
 		on_navbar: false,
-		auth_required: false,
+		auth_required: 0,
 		path: "/login",
 		method: "get",
 		handler: loginGetHandler,
@@ -65,7 +65,7 @@ export const endpoints = [
 	{
 		name: "Login",
 		on_navbar: false,
-		auth_required: false,
+		auth_required: 0,
 		path: "/login",
 		method: "post",
 		handler: loginPostHandler,
@@ -73,7 +73,7 @@ export const endpoints = [
 	{
 		name: "Register",
 		on_navbar: false,
-		auth_required: false,
+		auth_required: 0,
 		path: "/register",
 		method: "get",
 		handler: registerGetHandler,
@@ -81,7 +81,7 @@ export const endpoints = [
 	{
 		name: "Register",
 		on_navbar: false,
-		auth_required: false,
+		auth_required: 0,
 		path: "/register",
 		method: "post",
 		handler: registerPostHandler,
@@ -89,7 +89,7 @@ export const endpoints = [
 	{
 		name: "Profile",
 		on_navbar: false,
-		auth_required: true,
+		auth_required: 1,
 		path: "/profile",
 		method: "get",
 		handler: profileGetHandler,
@@ -97,7 +97,7 @@ export const endpoints = [
 	{
 		name: "Address",
 		on_navbar: false,
-		auth_required: true,
+		auth_required: 1,
 		path: "/profile/address",
 		method: "get",
 		handler: addressGetHandler,
@@ -105,7 +105,7 @@ export const endpoints = [
 	{
 		name: "Change Profile",
 		on_navbar: false,
-		auth_required: true,
+		auth_required: 1,
 		path: "/profile*",
 		method: "post",
 		handler: profilePostHandler,
@@ -113,7 +113,7 @@ export const endpoints = [
 	{
 		name: "Page Not Found",
 		on_navbar: false,
-		auth_required: false,
+		auth_required: 0,
 		path: "*",
 		method: "get",
 		handler: not_found,

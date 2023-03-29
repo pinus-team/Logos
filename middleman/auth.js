@@ -11,26 +11,29 @@ export default (req, res, next) => {
 			process.env.JWT_SECRET,
 			(err, decoded) => {
 				if (err) {
-                    console.error(err.name);
+					console.error(err.name);
 					res.clearCookie("pinus_jwt");
 				} else {
-                    req.user_data = decoded;
+					req.user_data = decoded;
 				}
 			}
 		);
 	}
 	const endpoint = endpoints
-		.slice()
-		.reverse()
 		.find((endpoint) => {
 			return endpoint.path.startsWith(req.originalUrl);
 		});
 	if (!endpoint) {
 		return next();
 	}
-	if (endpoint.auth_required) {
+    console.log(endpoint.name)
+	if (endpoint.auth_required != 0) {
 		if (req.user_data) {
-            return next();
+			if (endpoint.auth_required - 1 <= req.user_data.role) {
+				return next();
+			} else {
+                return res.redirect("/");
+            }
 		} else {
 			return res.redirect("/login");
 		}

@@ -32,7 +32,7 @@ export default [
       },
     ],
     payment: "Cash",
-    status: "Pickup",
+    status: "Todo",
   },
   {
     order_id: "653De1",
@@ -55,6 +55,52 @@ export default [
       }
     ],
     payment: "Cash",
-    status: "Pickup",
+    status: "Doing",
+  },
+  {
+    order_id: "234Ds2",
+    order_date: "2021-02-12",
+    order_time: "13:00",
+    user_name: "ER",
+    user_lastname: "taim",
+    address: {
+      at: "Drom2",
+      house_number: "534/12",
+      city: "mueang",
+      post_code: "50100",
+    },
+    order_list: [
+      {
+        menu_name: "menu1",
+        quantity: 3,
+        note: "",
+        additional: "",
+      }
+    ],
+    payment: "Cash",
+    status: "Done",
+  },
+  {
+    order_id: "233De1",
+    order_date: "2021-02-12",
+    order_time: "13:00",
+    user_name: "Weq",
+    user_lastname: "Jansu",
+    address: {
+      at: "Drom2",
+      house_number: "534/12",
+      city: "mueang",
+      post_code: "50100",
+    },
+    order_list: [
+      {
+        menu_name: "menu1",
+        quantity: 3,
+        note: "",
+        additional: "",
+      }
+    ],
+    payment: "Cash",
+    status: "Todo",
   },
 ];

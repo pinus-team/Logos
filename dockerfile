@@ -10,7 +10,13 @@ COPY package.json pnpm-lock.yaml /usr/src/app/
 
 RUN pnpm install
 
-COPY . .
+COPY ./public/ ./public/
+COPY ./mock_data/ ./mock_data/
+COPY ./routes/ ./routes/
+COPY ./views/ ./views/
+COPY index.js postcss.config.cjs tailwind.config.cjs tailwind.css ./
+
+
 
 EXPOSE 3000
 CMD [ "pnpm", "run", "start" ]

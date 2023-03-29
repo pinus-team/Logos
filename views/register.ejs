@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<%- include('./partials/head'); %>
+	</head>
+	<body
+		class="flex flex-col font-sans text-stone-50 bg-stone-900 w-full h-[100vh] relative">
+		<rect
+			class="w-full h-full absolute -z-50 bg-logos opacity-10"></rect>
+		<%- include('./partials/navbar'); %>
+		<form
+			class="flex flex-col self-center bg-stone-50 m-4 p-12 shadow-md text-stone-900 gap-4 w-[90%] md:w-[480px]" action="/register" method="post">
+			<div class="flex font-sans justify-center items-center gap-2">
+				<p class="text-3xl md:text-5xl font-bold">Pinus</p>
+				<div class="flex flex-col place-content-center gap-1">
+					<p class="p-0 md:py-1 text-2xl md:text-3xl font-bold">Sylvestris</p>
+					<hr class="border-0 border-t-2 border-primary" />
+				</div>
+			</div>
+			<p class="text-stone-500 text-center text-xs md:text-base">
+				Register a new account.
+			</p>
+			<div class="flex flex-col gap-1">
+				<label for="email" class="text-xs md:text-base font-bold"
+					>Email</label
+				>
+				<input
+					type="text"
+					class="transition-all bg-stone-200 p-2 focus:bg-stone-400 focus:outline-stone-600 text-xs md:text-base"
+					pattern="([-!#-'*+/-9=?A-Z^-~]+(\.[-!#-'*+/-9=?A-Z^-~]+)*|&quot;([]!#-[^-~ \t]|(\\[\t -~]))+&quot;)@([-!#-'*+/-9=?A-Z^-~]+(\.[-!#-'*+/-9=?A-Z^-~]+)*|\[[\t -Z^-~]*])"
+					name="email"
+					id="email" required/>
+			</div>
+			<div class="flex flex-col gap-1">
+				<label for="username" class="text-xs md:text-base font-bold"
+					>Username</label
+				>
+				<input
+					type="text"
+					class="transition-all bg-stone-200 p-2 focus:bg-stone-400 focus:outline-stone-600 text-xs md:text-base"
+					name="username"
+					id="username" required/>
+			</div>
+			<div class="flex flex-col gap-1">
+				<label for="password" class="text-xs md:text-base font-bold"
+					>Password</label
+				>
+				<input
+					type="password"
+					class="transition-all bg-stone-200 p-2 focus:bg-stone-400 focus:outline-stone-600 text-xs md:text-base"
+					name="password"
+					id="password" required/>
+			</div>
+			<div class="flex flex-col gap-1">
+				<label for="first_name" class="text-xs md:text-base font-bold"
+					>First name</label
+				>
+				<input
+					type="text"
+					class="transition-all bg-stone-200 p-2 focus:bg-stone-400 focus:outline-stone-600 text-xs md:text-base"
+					name="first_name"
+					id="first_name" required/>
+			</div>
+			<div class="flex flex-col gap-1">
+				<label for="last_name" class="text-xs md:text-base font-bold"
+					>Last name</label
+				>
+				<input
+					type="text"
+					class="transition-all bg-stone-200 p-2 focus:bg-stone-400 focus:outline-stone-600 text-xs md:text-base"
+					name="last_name"
+					id="last_name" required/>
+			</div>
+			<div class="flex flex-col gap-1">
+				<label for="phone_number" class="text-xs md:text-base font-bold"
+					>Phone</label
+				>
+				<input
+					type="tel"
+					class="transition-all bg-stone-200 p-2 focus:bg-stone-400 focus:outline-stone-600 text-xs md:text-base"
+					name="phone_number"
+					id="phone_number"
+					pattern="0[0-9]{9}"
+					required/>
+			</div>
+			<div class="flex flex-row items-center justify-start gap-2">
+				<input type="checkbox" name="terms" id="terms" required />
+				<label for="terms" class="text-xs md:text-base font-bold"
+					>I agree to the terms and conditions.</label>
+			</div>
+			<div class="flex flex-col">
+				<button class="bg-primary p-2 mt-4 font-bold" type="submit">
+					Login
+				</button>
+                <a href="/login" class="text-stone-500 underline place-self-center text-xs md:text-base"
+					>I already have an account.</a
+				>
+			</div>
+		</form>
+	</body>
+	<footer><%- include('./partials/footer'); %>
+</html>

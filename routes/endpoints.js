@@ -3,6 +3,11 @@ import not_found from "./not-found.js";
 import support from "./support.js";
 import story from "./story.js";
 import delivery from "./delivery.js";
+import { loginGetHandler, loginPostHandler } from "./login.js";
+import { registerGetHandler, registerPostHandler } from "./register.js";
+import { menuGetHandler } from "./menu.js";
+
+export const host = process.env.host || "127.0.0.1";
 
 
 export const endpoints = [
@@ -12,6 +17,13 @@ export const endpoints = [
 		path: "/",
 		method: "get",
 		handler: home,
+	},
+	{
+		name: "Menu",
+		on_navbar: true,
+		path: "/menu",
+		method: "get",
+		handler: menuGetHandler,
 	},
 	{
 		name: "Support",
@@ -33,6 +45,34 @@ export const endpoints = [
 		path: "/N59Zg7/delivery",
 		method: "get",
 		handler: delivery,
+  },
+  {
+		name: "Login",
+		on_navbar: false,
+		path: "/login",
+		method: "get",
+		handler: loginGetHandler,
+	},
+	{
+		name: "Login",
+		on_navbar: false,
+		path: "/login",
+		method: "post",
+		handler: loginPostHandler,
+	},
+	{
+		name: "Register",
+		on_navbar: false,
+		path: "/register",
+		method: "get",
+		handler: registerGetHandler,
+	},
+	{
+		name: "Register",
+		on_navbar: false,
+		path: "/register",
+		method: "post",
+		handler: registerPostHandler,
 	},
 	{
 		name: "Page Not Found",

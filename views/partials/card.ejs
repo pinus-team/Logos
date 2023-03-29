@@ -1,15 +1,19 @@
 <div
 	class="flex flex-row md:flex-col bg-stone-50 text-stone-900 transition-all shadow-md justify-between relative">
-	<div class="absolute bg-primary text-stone-900 px-4 py-2 shadow-md top-0 left-0">
+	<div
+		class="absolute bg-primary text-stone-900 px-4 py-2 shadow-md top-0 left-0">
 		<p><%= category.name %></p>
 	</div>
 	<img
 		src="<%= food.image_url %>?<%= Math.random() %>"
 		class="md:object-cover h-auto w-2/6 md:w-full" />
-	<div class="w-4/6 md:w-full transition-all flex flex-col justify-between gap-1 md:gap-2 flex-1 p-2 md:p-4">
+	<div
+		class="w-4/6 md:w-full transition-all flex flex-col justify-between gap-1 md:gap-2 flex-1 p-2 md:p-4">
 		<div>
 			<div class="flex flex-col justify-between">
-				<p class="text-xs md:text-sm italic capitalize"><%= food.type %></p>
+				<p class="text-xs md:text-sm italic capitalize">
+					<%= food.type %>
+				</p>
 				<div class="flex flex-row justify-between">
 					<p
 						class="transition-all text-sm md:text-xl capitalize truncate">
@@ -29,7 +33,10 @@
 		</div>
 		<div class="flex flex-row gap-2 place-self-end justify-self-center">
 			<button
-				class="flex items-center justify-center text-xs md:text-sm lg:text-base hover:text-primary transition-all">
+				class="flex items-center justify-center text-xs md:text-sm lg:text-base hover:text-primary transition-all"
+				type="button"
+				data-te-toggle="modal"
+				data-te-target="#modal_<%= food._id %>">
 				Customize
 				<svg
 					xmlns="http://www.w3.org/2000/svg"
@@ -63,4 +70,5 @@
 			</button>
 		</div>
 	</div>
+	<%- include('food-modal', { food }) %>
 </div>

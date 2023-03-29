@@ -1,14 +1,16 @@
 <div
 	id="promotion"
-	class="fixed-top top-16 transition-all hidden md:flex items-center justify-center p-2 bg-primary text-stone-900 text-xs md:text-base collapse show">
-	<p>
+	class="flex fixed top-16 z-50 transition-all items-center justify-center p-2 bg-primary text-stone-900 text-xs md:text-base w-full"
+	data-te-collapse-item
+	data-te-collapse-show>
+	<p class="min-h-0">
 		Get 2% Cashback now by applying for our
 		<a href="#" class="underline decoration-solid">premium membership</a>
 	</p>
 	<button
-		class="absolute right-4 mx-2"
-		data-bs-toggle="collapse"
-		data-bs-target="#promotion"
+		class="absolute right-4 mx-2 min-h-0"
+		data-te-collapse-init
+		data-te-target="#promotion"
 		aria-expanded="true"
 		aria-controls="#promotion">
 		<svg

@@ -8,7 +8,7 @@ export const loginGetHandler = (req, res) => {
 export const loginPostHandler = (req, res) => {
     axios.post(`http://${host}:8000/auth/login`, req.body).then(
         (response) => {
-            res.cookie("pinus_jwt", response.data);
+            res.cookie("pinus_jwt", response.data, { maxAge: 900000, httpOnly: true });
             res.redirect("/profile");
         },
         (error) => {

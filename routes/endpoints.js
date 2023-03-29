@@ -6,14 +6,18 @@ import delivery from "./delivery.js";
 import { loginGetHandler, loginPostHandler } from "./login.js";
 import { registerGetHandler, registerPostHandler } from "./register.js";
 import { menuGetHandler } from "./menu.js";
+import dotenv from "dotenv";
 
-export const host = process.env.host || "127.0.0.1";
+dotenv.config();
+
+export const host = process.env.HOST || "127.0.0.1";
 
 
 export const endpoints = [
 	{
 		name: "Home",
 		on_navbar: false,
+		auth_required: false,
 		path: "/",
 		method: "get",
 		handler: home,
@@ -21,6 +25,7 @@ export const endpoints = [
 	{
 		name: "Menu",
 		on_navbar: true,
+		auth_required: false,
 		path: "/menu",
 		method: "get",
 		handler: menuGetHandler,
@@ -28,6 +33,7 @@ export const endpoints = [
 	{
 		name: "Support",
 		on_navbar: true,
+		auth_required: false,
 		path: "/support",
 		method: "get",
 		handler: support,
@@ -35,6 +41,7 @@ export const endpoints = [
 	{
 		name: "Story",
 		on_navbar: true,
+		auth_required: false,
 		path: "/story",
 		method: "get",
 		handler: story,
@@ -42,6 +49,7 @@ export const endpoints = [
 	{
 		name: "Delivery",
 		on_navbar: false,
+		auth_required: false,
 		path: "/N59Zg7/delivery",
 		method: "get",
 		handler: delivery,
@@ -49,6 +57,7 @@ export const endpoints = [
   {
 		name: "Login",
 		on_navbar: false,
+		auth_required: false,
 		path: "/login",
 		method: "get",
 		handler: loginGetHandler,
@@ -56,6 +65,7 @@ export const endpoints = [
 	{
 		name: "Login",
 		on_navbar: false,
+		auth_required: false,
 		path: "/login",
 		method: "post",
 		handler: loginPostHandler,
@@ -63,6 +73,7 @@ export const endpoints = [
 	{
 		name: "Register",
 		on_navbar: false,
+		auth_required: false,
 		path: "/register",
 		method: "get",
 		handler: registerGetHandler,
@@ -70,6 +81,7 @@ export const endpoints = [
 	{
 		name: "Register",
 		on_navbar: false,
+		auth_required: false,
 		path: "/register",
 		method: "post",
 		handler: registerPostHandler,
@@ -77,6 +89,7 @@ export const endpoints = [
 	{
 		name: "Page Not Found",
 		on_navbar: false,
+		auth_required: false,
 		path: "*",
 		method: "get",
 		handler: not_found,

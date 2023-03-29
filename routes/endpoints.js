@@ -61,17 +61,8 @@ export const endpoints = [
 	{
 		name: "Delivery",
 		on_navbar: false,
-		auth_required: 0,
+		auth_required: 2,
 		on_private_navbar: true,
-		path: "/N59Zg7/delivery",
-		method: "get",
-		handler: delivery,
-	},
-	{
-		name: "Login",
-		on_navbar: false,
-		auth_required: 0,
-		on_private_navbar: false,
 		path: "/N59Zg7/delivery",
 		method: "get",
 		handler: delivery,
@@ -79,6 +70,7 @@ export const endpoints = [
 	{
 		name: "Today",
 		on_navbar: false,
+		auth_required: 2,
 		on_private_navbar: true,
 		path: "/N59Zg7/restaurant",
 		method: "get",
@@ -87,6 +79,7 @@ export const endpoints = [
 	{
 		name: "History",
 		on_navbar: false,
+		auth_required: 2,
 		on_private_navbar: true,
 		path: "/N59Zg7/history",
 		method: "get",
@@ -95,6 +88,7 @@ export const endpoints = [
 	{
 		name: "Summary",
 		on_navbar: false,
+		auth_required: 2,
 		on_private_navbar: true,
 		path: "/N59Zg7/summary",
 		method: "get",
@@ -103,6 +97,7 @@ export const endpoints = [
 	{
 		name: "Login",
 		on_navbar: false,
+		auth_required: 0,
 		on_private_navbar: false,
 		path: "/login",
 		method: "get",

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-p-16 snap-y snap-mandatory">
+<html lang="en">
 	<head>
 		<%- include('./partials/head'); %>
 		<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -7,7 +7,7 @@
 	<body class="font-sans text-stone-900 bg-gray-100">
 		<%- include('./partials/navbar'); %>
 		<div
-			class="flex text-center justify-center items-center overflow-x-hidden relative w-full h-full-with-nav snap-start">
+			class="flex text-center justify-center items-center overflow-x-hidden h-fit">
 			<div class="w-full h-full p-4">
 				<div class="w-full h-full">
 					<div
@@ -36,7 +36,7 @@
 							</div>
 							<div class="flex flex-row justify-center">
 								<canvas
-									class="p-10 w-2/3"
+									class="p-10 w-1/2"
 									id="chartPie"></canvas>
 							</div>
 							<div class="text-left">
@@ -71,50 +71,116 @@
 								</p>
 							</div>
 						</div>
-						<div class="grid grid-rows-2 gap-4">
-							<div class="grid grid-cols-2 gap-4">
-								<div
-									class="bg-white shadow-md border-1 border-stone-600 p-4">
-									<div class="text-left">
-										<p class="text-xl">Monthly</p>
+						<div class="grid grid-cols-2 gap-4 h-min">
+							<div
+								class="bg-white shadow-md border-1 border-stone-600 p-4">
+								<div class="text-left">
+									<p class="text-xl">Monthly</p>
+								</div>
+								<div class="flex flex-row">
+									<div
+										class="text-left px-4 py-2 pt-4 flex flex-col items-start">
+										<p>Total Income</p>
+										<p class="text-3xl px-2">
+											$<%=
+											sums_monthly.reduce((a,b)=>a+b.income,0).toFixed(2)
+											%>
+										</p>
 									</div>
 								</div>
-								<div
-									class="bg-white shadow-md border-1 border-stone-600 p-4">
-									<div class="text-left">
-										<p class="text-xl">Yearly</p>
+								<div class="flex flex-row">
+									<div
+										class="text-left px-4 py-2 pt-4 flex flex-col items-start">
+										<p>Total Order Served</p>
+										<p class="text-3xl px-2">
+											<%=
+											sums_monthly.reduce((a,b)=>a+b.count,0)
+											%>
+										</p>
+									</div>
+								</div>
+								<div class="flex flex-row">
+									<div
+										class="text-left px-4 py-2 pt-4 flex flex-col items-start">
+										<p>Average Income per Order Served</p>
+										<p class="text-3xl px-2">
+											$<%=
+											(sums_monthly.reduce((a,b)=>a+b.income,0)/sums_monthly.reduce((a,b)=>a+b.count,0)).toFixed(2)
+											%>
+										</p>
 									</div>
 								</div>
 							</div>
-							<div class="grid grid-rows-2 gap-4">
-								<div
-									class="bg-white shadow-md border-1 border-stone-600 p-4 flex flex-col">
-									<div class="text-left">
-										<p class="text-xl">Mostly</p>
-									</div>
+							<div
+								class="bg-white shadow-md border-1 border-stone-600 p-4">
+								<div class="text-left">
+									<p class="text-xl">Yearly</p>
+								</div>
+								<div class="flex flex-row">
 									<div
-										class="grid grid-cols-4 gap-4 w-full text-left px-4 py-2 flex-1 items-center">
-										<% best_selling_all.forEach((dish) => { %>
-										<div
-											class="flex flex-col first-of-type:col-span-4 border border-stone-300 shadow-md p-3">
-											<p class="truncate">
-												<%= dish.title %>
-											</p>
-											<p class="px-4 text-3xl">
-												<%= dish.count %>
-											</p>
-										</div>
-										<% }) %>
+										class="text-left px-4 py-2 pt-4 flex flex-col items-start">
+										<p>Total Income</p>
+										<p class="text-3xl px-2">
+											$<%=
+											sums_yearly.reduce((a,b)=>a+b.income,0).toFixed(2)
+											%>
+										</p>
 									</div>
 								</div>
+								<div class="flex flex-row">
+									<div
+										class="text-left px-4 py-2 pt-4 flex flex-col items-start">
+										<p>Total Order Served</p>
+										<p class="text-3xl px-2">
+											<%=
+											sums_yearly.reduce((a,b)=>a+b.count,0)
+											%>
+										</p>
+									</div>
+								</div>
+								<div class="flex flex-row">
+									<div
+										class="text-left px-4 py-2 pt-4 flex flex-col items-start">
+										<p>Average Income per Order Served</p>
+										<p class="text-3xl px-2">
+											$<%=
+											(sums_yearly.reduce((a,b)=>a+b.income,0)/sums_yearly.reduce((a,b)=>a+b.count,0)).toFixed(2)
+											%>
+										</p>
+									</div>
+								</div>
+							</div>
+							<div
+								class="bg-white shadow-md border-1 border-stone-600 p-4 flex flex-col col-span-2">
+								<div class="text-left">
+									<p class="text-xl">Mostly</p>
+								</div>
 								<div
-									class="bg-white shadow-md border-1 border-stone-600 p-4 flex flex-col">
-									<div class="text-left">
-										<p class="text-xl">Customer support</p>
+									class="grid grid-cols-4 gap-4 w-full text-left px-4 py-2 flex-1 items-center">
+									<% best_selling_all.forEach((dish) => { %>
+									<div
+										class="flex flex-col first-of-type:col-span-4 border border-stone-300 shadow-md p-3">
+										<p class="truncate">
+											<%= dish.title %>
+										</p>
+										<p class="px-4 text-3xl">
+											<%= dish.count %>
+										</p>
 									</div>
-									<div class="flex flex-col flex-1 justify-center items-center">
-										<p class="text-xl opacity-50">Good job! There are no open tickets left.</p>
-									</div>
+									<% }) %>
+								</div>
+							</div>
+							<div
+								class="bg-white shadow-md border-1 border-stone-600 p-4 flex flex-col col-span-2">
+								<div class="text-left">
+									<p class="text-xl">Customer support</p>
+								</div>
+								<div
+									class="flex flex-col flex-1 justify-center items-center">
+									<p class="text-xl opacity-50">
+										Good job! There are no open tickets
+										left.
+									</p>
 								</div>
 							</div>
 						</div>

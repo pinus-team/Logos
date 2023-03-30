@@ -74,25 +74,3 @@ function changeInput(btn, amount, foodId) {
 	input.value = value;
 	calculatePrice(foodId);
 }
-
-async function addToCart(foodId) {
-	const body = {
-		dish_id: foodId,
-		quantity: 1,
-	};
-	console.log(body);
-	await axios
-		.post("/menu", body, {
-			withCredentials: true,
-			headers: {
-				"Content-Type": "application/json;",
-				"Access-Control-Allow-Origin": "*",
-			},
-		})
-		.then((res) => {
-			console.log(res);
-		})
-		.catch((err) => {
-			alert("Please log in first");
-		});
-}

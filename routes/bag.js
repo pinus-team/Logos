@@ -36,10 +36,10 @@ export const bagPostHandler = async (req, res) => {
 					.reduce((sum, item) => sum + Number(item.price), 0)
 					.toFixed(2)
 			: Number(0).toFixed(2);
-    req.body.items = bag_content;
-    req.body.totalPrice = totalPrice;
-	console.log(req.body);
-	// await axios.post(`http://localhost:8000/bag/${req.user_data._id}`, req.body);
+	req.body.items = bag_content;
+	req.body.totalPrice = totalPrice;
+	req.body.user_id = req.user_data._id;
+	await axios.post(`http://localhost:8000/order`, req.body);
 	res.redirect("/bag");
 };
 

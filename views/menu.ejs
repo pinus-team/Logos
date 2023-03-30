@@ -1,40 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<%- include('./partials/head'); %>
-		<script src="/js/menu.js"></script>
-		<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-	</head>
-	<body class="flex flex-col font-sans text-stone-50 bg-news relative">
-		<%- include('./partials/navbar'); %> <%-
-		include('./partials/promotion'); %>
-		<iframe name="noneFrame" id="noneFrame" style="display: none;"></iframe>
-		<div class="btn-active" hidden></div>
-		<div class="m-4 lg:m-8 flex flex-col text-stone-900 gap-4">
-			<p class="font-semibold">Categories</p>
-			<div class="px-4">
-				<div
-					class="w-full snap-x snap-proximity flex flex-row gap-2 overflow-x-scroll xl:overflow-hidden lg:flex lg:flex-row lg:justify-between pt-2 pb-4">
-					<% categories.forEach((cat) => { %>
-					<a
-						href="/menu?category=<%= cat.id %>"
-						class="min-w-[180px] xl:flex-1 snap-center">
-						<div
-							class="p-1 lg:p-2 shadow-md bg-stone-50 text-center text-xs lg:text-base">
-							<%= cat.name %>
-						</div>
-					</a>
-					<% }); %>
-				</div>
-			</div>
-			<div
-				class="grid grid-cols-1 lg:grid-cols-3 xl:grid-cols-5 gap-4 lg:gap-8">
-				<% food_list.forEach((food) => { %> <%-
-				include('./partials/card', {food, category:
-				categories.find((cat) => {return cat.id === food.category})});
-				%> <% }); %>
-			</div>
-		</div>
-	</body>
-	<footer><%- include('./partials/footer'); %></footer>
+  <head>
+    <%- include('./partials/head'); %>
+    <script src="/js/menu.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  </head>
+  <body class="flex flex-col font-sans text-stone-50 bg-news relative">
+    <%- include('./partials/navbar'); %> <%- include('./partials/promotion'); %>
+    <section class="overflow-hidden w-full bg-white snap-start">
+      <div class="w-full relative">
+        <div class="-m-1 flex flex-wrap lg:-m-2"></div>
+        <div class="hidden md:block">
+          <img src="img/md-Banner.png" alt="" />
+        </div>
+        <div class="h-auto flex justify-center items-center md:hidden">
+          <img
+            src="img/Banner.png"
+            alt="Banner"
+            class="w-full h-full object-cover"
+          />
+        </div>
+      </div>
+    </section>
+    <iframe name="noneFrame" id="noneFrame" style="display: none"></iframe>
+    <div class="btn-active" hidden></div>
+    <div class="m-4 lg:m-8 flex flex-col text-stone-900 gap-4">
+      <p class="font-semibold">Categories</p>
+      <div class="px-4">
+        <div
+          class="w-full snap-x snap-proximity flex flex-row gap-2 overflow-x-scroll xl:overflow-hidden lg:flex lg:flex-row lg:justify-between pt-2 pb-4"
+        >
+          <% categories.forEach((cat) => { %>
+          <a
+            href="/menu?category=<%= cat.id %>"
+            class="min-w-[180px] xl:flex-1 snap-center"
+          >
+            <div
+              class="p-1 lg:p-2 shadow-md bg-stone-50 text-center text-xs lg:text-base"
+            >
+              <%= cat.name %>
+            </div>
+          </a>
+          <% }); %>
+        </div>
+      </div>
+      <div
+        class="grid grid-cols-1 lg:grid-cols-3 xl:grid-cols-5 gap-4 lg:gap-8"
+      >
+        <% food_list.forEach((food) => { %> <%- include('./partials/card',
+        {food, category: categories.find((cat) => {return cat.id ===
+        food.category})}); %> <% }); %>
+      </div>
+    </div>
+  </body>
+  <footer><%- include('./partials/footer'); %></footer>
 </html>

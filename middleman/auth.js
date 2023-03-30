@@ -23,7 +23,7 @@ export default (req, res, next) => {
 		.slice()
 		.reverse()
 		.find((endpoint) => {
-			return req.originalUrl.startsWith(endpoint.path);
+			return req.originalUrl.startsWith(endpoint.path) && req.method.toLowerCase() == endpoint.method.toLowerCase();
 		});
 	if (!endpoint) {
 		return next();

@@ -71,11 +71,6 @@ export const profilePostHandler = async (req, res) => {
 		};
 	}
 	req.body._id = req.user_data._id;
-	await axios.post(`http://${host}:8000/user/`, req.body).catch((err) => {
-		console.log(
-			util.inspect(err.response.data.errInfo.details, { depth: 10 })
-		);
-		// console.table(err.response.data.errInfo.details.schemaRulesNotSatisfied[0].propertiesNotSatisfied[0]);
-	});
+	await axios.post(`http://${host}:8000/user/`, req.body);
 	res.redirect(req.originalUrl);
 };

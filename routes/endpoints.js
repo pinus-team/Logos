@@ -18,6 +18,7 @@ import {
 	profilePostHandler,
 } from "./profile.js";
 import { bagDelHandler, bagGetHandler, bagPostHandler } from "./bag.js";
+import { orderSingleGetHandler } from "./order.js";
 
 dotenv.config();
 
@@ -150,6 +151,14 @@ export const endpoints = [
 		path: "/register",
 		method: "post",
 		handler: registerPostHandler,
+	},
+	{
+		name: "Order",
+		on_navbar: false,
+		auth_required: 1,
+		path: "/order",
+		method: "get",
+		handler: orderSingleGetHandler,
 	},
 	{
 		name: "Profile",

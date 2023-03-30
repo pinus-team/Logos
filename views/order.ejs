@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en" class="h-screen">
+	<head>
+		<%- include('./partials/head'); %>
+		<script src="/js/order.js"></script>
+		<link
+			rel="stylesheet"
+			href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
+			integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI="
+			crossorigin="" />
+		<script
+			src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
+			integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM="
+			crossorigin=""></script>
+	</head>
+	<body
+		class="flex flex-col font-sans text-stone-50 bg-stone-900 overflow-x-hidden relative justify-between min-h-screen h-full">
+		<rect class="w-full h-full absolute -z-50 bg-logos opacity-10"></rect>
+		<%- include('./partials/navbar'); %>
+		<div class="flex flex-col flex-1 p-4 lg:p-12">
+			<div
+				class="flex flex-col bg-stone-50 p-4 lg:p-12 shadow-md text-stone-900 gap-4">
+				<p class="text-sm lg:text-base opacity-70">#<%= order._id %></p>
+				<div class="flex flex-row items-center gap-2 px-4 py-2">
+					<svg
+						xmlns="http://www.w3.org/2000/svg"
+						fill="none"
+						viewBox="0 0 24 24"
+						stroke-width="1.5"
+						stroke="currentColor"
+						class="w-6 h-6 text-primary">
+						<path
+							stroke-linecap="round"
+							stroke-linejoin="round"
+							d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" />
+					</svg>
+					<hr
+						class="rounded-lg border <%= order.status >= 1? 'border-primary': 'border-stone-500' %> flex-1" />
+					<svg
+						xmlns="http://www.w3.org/2000/svg"
+						fill="none"
+						viewBox="0 0 24 24"
+						stroke-width="1.5"
+						stroke="currentColor"
+						class="w-6 h-6 <%= order.status >= 1? 'text-primary': 'text-stone-500' %>">
+						<path
+							stroke-linecap="round"
+							stroke-linejoin="round"
+							d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12zm0 0h7.5" />
+					</svg>
+					<hr
+						class="rounded-lg border <%= order.status >= 2? 'border-primary': 'border-stone-500' %> flex-1" />
+					<svg
+						xmlns="http://www.w3.org/2000/svg"
+						fill="none"
+						viewBox="0 0 24 24"
+						stroke-width="1.5"
+						stroke="currentColor"
+						class="w-6 h-6 <%= order.status >= 2? 'text-primary': 'text-stone-500' %>">
+						<path
+							stroke-linecap="round"
+							stroke-linejoin="round"
+							d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+					</svg>
+				</div>
+				<div class="flex flex-col lg:flex-row gap-8">
+					<div class="flex flex-col flex-1 gap-2 min-w-0">
+						<p class="text-base lg:text-xl">
+							<span class="font-semibold">Current Status:</span>
+							<%= order.status == 0? 'On Queue': order.status ==
+							1? 'Preparing': 'Done' %>
+						</p>
+						<p class="text-base lg:text-xl">
+							<span class="font-semibold">Payment Option:</span>
+							<%= order.payment_method == 'cash'? 'Cash':
+							order.payment_method == 'credit'? 'Credit Card':
+							undefined %>
+						</p>
+						<p class="text-base lg:text-xl">
+							<span class="font-semibold">Delivery Option:</span>
+							<%= order.delivery_method == 'pickup'
+							? 'Pick up at store': order.delivery_method == 'delivery'?
+							'Deliver to your house': undefined %>
+						</p>
+						<div id="map" class="w-full aspect-video border border-stone-700 <%= order.delivery_method == 'delivery' ? '': 'hidden' %>"></div>
+					</div>
+					<div
+						class="flex flex-col gap-4 flex-1 border border-stone-300 p-4 shadow-md font-serif min-w-0">
+						<p class="font-serif text-base lg:text-xl">Items</p>
+						<hr class="border-0 border-b border-stone-400" />
+						<div class="flex flex-col gap-4">
+							<% order.items.forEach(item => { %>
+							<div
+								class="pl-8 flex flex-row justify-between items-center">
+								<div class="flex flex-col max-w-[66%]">
+									<p class="text-base lg:text-xl truncate">
+										<%= item.dish.title %>
+									</p>
+									<% item.addons.forEach(addon => { %>
+									<p class="pl-8 text-base lg:text-xl">
+										+ <%= addon.name %>
+									</p>
+									<% }) %> <% if (item.note) { %>
+									<p
+										class="font-serif text-sm lg:text-base italic opacity-70">
+										"<%=item.note %>"
+									</p>
+									<% } %>
+								</div>
+								<div class="flex flex-col items-end">
+									<p class="font-serif text-sm lg:text-base">
+										Qt. <%= item.quantity %>
+									</p>
+									<p class="font-serif text-xl lg:text-2xl">
+										$<%= item.price %>
+									</p>
+								</div>
+							</div>
+							<hr
+								class="border-0 border-b border-stone-200 brightness-90 flex-1 mx-4 last-of-type:hidden" />
+							<% }) %>
+						</div>
+						<hr class="border-0 border-b border-stone-400" />
+						<div class="flex flex-row">
+							<p class="font-serif text-base lg:text-xl">Total</p>
+							<p class="font-serif text-xl lg:text-2xl ml-auto">
+								$<%= order.totalPrice %>
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<% if (order.delivery_method == 'delivery') { %>
+		<script>
+			(() => createMap(
+				"map",
+				"<%= order.user_data.address.latitude %>",
+				"<%= order.user_data.address.longitude %>"
+			))();
+		</script>
+		<% } %>
+	</body>
+	<footer><%- include('./partials/footer'); %></footer>
+</html>

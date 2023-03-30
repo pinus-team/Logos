@@ -115,49 +115,55 @@
                   ></path>
                 </svg>
               </div>
+
+              <!-- <script defer>
+                let titles = [];
+              </script>
+              <% article.forEach(item => { %>
+              <script defer>
+                titles.push("<%= item.title %>");
+              </script>
+              <% }) %> -->
+
+              <script defer>
+                function handleInput() {
+                  const articles = <%- JSON.stringify(article) %>;
+                  searching(articles);
+                }
+              </script>
+
               <input
                 type="text"
                 id="simple-search"
                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5"
                 placeholder="Search"
                 required
+                oninput="handleInput()"
               />
+              <div
+                id="suggestions"
+                class="hidden absolute z-10 w-full bg-white shadow-md rounded-lg mt-4"
+              >
+                <div class="text-sm p-2 text-stone-500">Quick links</div>
+                <% if (article.length) { %>
+                <ul id="quick-links" class="divide-y divide-gray-200">
+                  <% for (let i = 0; i < Math.min(article.length, 3); i++) { %>
+                  <li class="px-4 py-2 hover:bg-gray-100 cursor-pointer">
+                    <a
+                      href="mailto:support@pinussylvestris.com?subject=<%= article[i].title %>"
+                      ><%= article[i].title %></a
+                    >
+                  </li>
+                  <% } %>
+                </ul>
+                <% } else { %>
+                <p class="px-4 py-2">No matching articles found.</p>
+                <% } %>
+              </div>
             </div>
           </form>
         </div>
 
-        <!-- quick support -->
-        <!-- <div
-          class="flex flex-row justify-center items-center text-center mb-6 relative p-8 w-2/3 place-self-center"
-        >
-          <a
-            class="text-black underline flex-1 h-full"
-            href="mailto:support@pinussylvestris.com?subject=Forgot account or password"
-          >
-            <div class="flex flex-col relative items-center">
-              <img src="svg/password.svg" class="my-auto w-1/2" />
-              <p>Forgot account or password</p>
-            </div>
-          </a>
-          <a
-            class="text-black underline flex-1 h-full"
-            href="mailto:support@pinussylvestris.com?subject=Services"
-          >
-            <div class="flex flex-col relative items-center">
-              <img src="svg/hander.svg" class="my-auto w-1/2" />
-              <p class="flex-initial">Services</p>
-            </div>
-          </a>
-          <a
-            class="text-black underline flex-1 h-full"
-            href="mailto:support@pinussylvestris.com?subject=Billing and Subscriptions"
-          >
-            <div class="flex flex-col relative items-center">
-              <img src="svg/billing.svg" class="my-auto w-1/2" />
-              <p>Billing and subscriptions</p>
-            </div>
-          </a>
-        </div> -->
         <div class="flex flex-col md:flex-row">
           <div class="flex-1 py-2 px-4">
             <a
@@ -229,6 +235,71 @@
         </div>
       </div>
     </section>
+    <script>
+      const searchInput = document.querySelector("#simple-search");
+      const suggestions = document.querySelector("#suggestions");
+      searchInput.addEventListener("click", () => {
+        suggestions.classList.remove("hidden");
+      });
+
+      document.addEventListener("click", (event) => {
+        if (!event.target.closest(".relative")) {
+          suggestions.classList.add("hidden");
+        }
+      });
+
+      function searching(articles) {
+        const inputValue = searchInput.value.toLowerCase().trim();
+        const quickLinks = document.querySelector("#quick-links");
+
+        const defaultLinks = `
+          <% if (article.length) { %>
+            <ul id="quick-links" class="divide-y divide-gray-200">
+              <% for (let i = 0; i < Math.min(article.length, 3); i++) { %>
+                <li class="px-4 py-2 hover:bg-gray-100 cursor-pointer">
+                  <a href="mailto:support@pinussylvestris.com?subject=<%= article[i].title %>">
+                    <%= article[i].title %>
+                  </a>
+                </li>
+              <% } %>
+            </ul>
+          <% } else { %>
+            <p class="px-4 py-2">No matching articles found.</p>
+          <% } %>
+        `;
+
+        if (inputValue === "") {
+          quickLinks.innerHTML = defaultLinks;
+        }
+
+
+
+        // Check if the articles parameter is an array with a filter method
+        if (Array.isArray(articles) && typeof articles.filter === "function") {
+          const filteredArticles = articles.filter((item) =>
+            item.title.toLowerCase().includes(inputValue)
+          );
+
+          if (filteredArticles.length > 0) {
+            const filteredLinks = filteredArticles
+              .map((item) => {
+                return `<li class="px-4 py-2 hover:bg-gray-100 cursor-pointer">
+              <a href="mailto:support@pinussylvestris.com?subject=${item.title}">
+                ${item.title}
+              </a>
+            </li>`;
+              })
+              .join("");
+            quickLinks.innerHTML = filteredLinks;
+          } else {
+            quickLinks.innerHTML =
+              '<p class="px-4 py-2">No matching articles found.</p>';
+          }
+        } else {
+          console.error("articles is not an array with a filter method");
+        }
+      }
+    </script>
   </body>
   <footer><%- include('./partials/footer'); %></footer>
 </html>

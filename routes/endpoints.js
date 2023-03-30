@@ -13,6 +13,7 @@ import { menuGetHandler, menuPostHandler } from "./menu.js";
 import dotenv from "dotenv";
 import {
 	addressGetHandler,
+	orderGetHandler,
 	profileGetHandler,
 	profilePostHandler,
 } from "./profile.js";
@@ -165,6 +166,14 @@ export const endpoints = [
 		path: "/profile/address",
 		method: "get",
 		handler: addressGetHandler,
+	},
+	{
+		name: "Order",
+		on_navbar: false,
+		auth_required: 1,
+		path: "/profile/orders",
+		method: "get",
+		handler: orderGetHandler,
 	},
 	{
 		name: "Change Profile",

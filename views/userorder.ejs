@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<%- include('./partials/head'); %>
+        <script src="/js/profile.js"></script>
+	</head>
+	<body
+		class="font-sans text-stone-900 bg-stone-100 relative">
+        <%- include('./partials/navbar'); %>
+        <div class="flex flex-col gap-8 p-8">
+            <p class="text-xl lg:text-3xl text-center lg:text-left">My Account</p>
+            <div class="flex flex-col lg:flex-row gap-8">
+                <div class="flex flex-row lg:flex-col items-start w-full justify-around lg:justify-start lg:w-1/12 gap-4">
+                    <a class="text-sm lg:text-base flex-1 lg:flex-none px-4 py-2 lg:p-0 shadow-md lg:shadow-none bg-stone-50 lg:bg-transparent" href="/profile">My Profile</a>
+                    <a class="text-sm lg:text-base flex-1 lg:flex-none px-4 py-2 lg:p-0 shadow-md lg:shadow-none bg-stone-50 lg:bg-transparent" href="/profile/address">My Address</a>
+                    <a class="font-bold text-sm lg:text-base flex-1 lg:flex-none px-4 py-2 lg:p-0 shadow-md lg:shadow-none bg-stone-50 lg:bg-transparent" href="/profile/orders">My Orders</a>
+                </div>
+                <div class="flex flex-col flex-1 shadow-md bg-stone-50 p-8 gap-4">
+
+                </div>
+            </div>
+        </div>
+
+
+	</body>
+	<footer><%- include('./partials/footer'); %>
+</html>

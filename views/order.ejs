@@ -78,17 +78,49 @@
 						</p>
 						<p class="text-base lg:text-xl">
 							<span class="font-semibold">Delivery Option:</span>
-							<%= order.delivery_method == 'pickup'
-							? 'Pick up at store': order.delivery_method == 'delivery'?
+							<%= order.delivery_method == 'pickup' ? 'Pick up at store': order.delivery_method == 'delivery'?
 							'Deliver to your house': undefined %>
 						</p>
-						<div id="map" class="w-full aspect-video border border-stone-700 <%= order.delivery_method == 'delivery' ? '': 'hidden' %>"></div>
+						<div
+							id="map"
+							class="w-full aspect-video border border-stone-700 <%= order.delivery_method == 'delivery' ? '': 'hidden' %>"></div>
 					</div>
 					<div
 						class="flex flex-col gap-4 flex-1 border border-stone-300 p-4 shadow-md font-serif min-w-0">
 						<p class="font-serif text-base lg:text-xl">Items</p>
 						<hr class="border-0 border-b border-stone-400" />
-
+						<div class="flex flex-col gap-1 py-2 flex-1 justify-start">
+							<% order.items.forEach(item => { %>
+							<div
+								class="text-left px-4 flex flex-row justify-between items-center">
+								<div class="flex flex-col max-w-[66%]">
+									<p class="text-base lg:text-xl truncate">
+										<%= item.dish.title %>
+									</p>
+									<% item.addons.forEach(addon => { %>
+									<p class="pl-4 text-base lg:text-xl">
+										+ <%= addon.name %>
+									</p>
+									<% }) %> <% if (item.note) { %>
+									<p
+										class="text-base lg:text-xl italic opacity-70">
+										"<%=item.note %>"
+									</p>
+									<% } %>
+								</div>
+								<div class="flex flex-col items-end">
+									<p class="text-xs lg:text-sm">
+										Qt. <%= item.quantity %>
+									</p>
+									<p class="text-base lg:text-xl">
+										$<%= item.price.toFixed(2) %>
+									</p>
+								</div>
+							</div>
+							<hr
+								class="border-0 border-b border-stone-200 brightness-90 mx-4 last-of-type:hidden" />
+							<% }) %>
+						</div>
 						<hr class="border-0 border-b border-stone-400" />
 						<div class="flex flex-row">
 							<p class="font-serif text-base lg:text-xl">Total</p>
@@ -102,11 +134,12 @@
 		</div>
 		<% if (order.delivery_method == 'delivery') { %>
 		<script>
-			(() => createMap(
-				"map",
-				"<%= order.user_data.address.latitude %>",
-				"<%= order.user_data.address.longitude %>"
-			))();
+			(() =>
+				createMap(
+					"map",
+					"<%= order.user_data.address.latitude %>",
+					"<%= order.user_data.address.longitude %>"
+				))();
 		</script>
 		<% } %>
 	</body>

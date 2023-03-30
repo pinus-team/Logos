@@ -26,7 +26,7 @@
 								class="grid grid-cols-4 gap-4 w-full text-left px-4 py-2">
 								<% best_selling.forEach((dish) => { %>
 								<div
-									class="flex flex-col first-of-type:col-span-4">
+									class="flex flex-col first-of-type:col-span-4 border border-stone-300 shadow-md p-3">
 									<p class="truncate"><%= dish.title %></p>
 									<p class="px-4 text-3xl">
 										<%= dish.count %>
@@ -45,7 +45,7 @@
 									class="border-0 border-b border-stone-600" />
 							</div>
 							<div
-								class="text-left px-4 py-2 flex flex-row items-center gap-2 justify-between">
+								class="text-left px-4 py-2 pt-4 flex flex-row items-center gap-2 justify-between">
 								<p>Total Income</p>
 								<hr
 									class="border-0 border-b border-stone-400 flex-1 border-dotted mx-2" />
@@ -88,15 +88,32 @@
 							</div>
 							<div class="grid grid-rows-2 gap-4">
 								<div
-									class="bg-white shadow-md border-1 border-stone-600 p-4">
+									class="bg-white shadow-md border-1 border-stone-600 p-4 flex flex-col">
 									<div class="text-left">
 										<p class="text-xl">Mostly</p>
 									</div>
+									<div
+										class="grid grid-cols-4 gap-4 w-full text-left px-4 py-2 flex-1 items-center">
+										<% best_selling_all.forEach((dish) => { %>
+										<div
+											class="flex flex-col first-of-type:col-span-4 border border-stone-300 shadow-md p-3">
+											<p class="truncate">
+												<%= dish.title %>
+											</p>
+											<p class="px-4 text-3xl">
+												<%= dish.count %>
+											</p>
+										</div>
+										<% }) %>
+									</div>
 								</div>
 								<div
-									class="bg-white shadow-md border-1 border-stone-600 p-4">
+									class="bg-white shadow-md border-1 border-stone-600 p-4 flex flex-col">
 									<div class="text-left">
 										<p class="text-xl">Customer support</p>
+									</div>
+									<div class="flex flex-col flex-1 justify-center items-center">
+										<p class="text-xl opacity-50">Good job! There are no open tickets left.</p>
 									</div>
 								</div>
 							</div>

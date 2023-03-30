@@ -13,11 +13,11 @@
 				class="object-cover w-full h-full -z-20 brightness-50" />
 			<div
 				class="absolute py-10 text-stone-50 z-0 drop-shadow-md w-4/6 flex flex-col gap-8">
-				<h1 class="text-2xl md:text-6xl my-4 mb-0 md:mb-4">
+				<h1 class="text-2xl lg:text-6xl my-4 mb-0 lg:mb-4">
 					Maultaschen
 				</h1>
 				<p
-					class="opacity-90 text-xs hidden md:inline-block md:text-base md:line-clamp-3 lg:line-clamp-5">
+					class="opacity-90 text-xs hidden lg:inline-block lg:text-base lg:line-clamp-3 lg:line-clamp-5">
 					Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 					Suspendisse ac nisl eu dolor dapibus mattis. Nulla eu
 					vestibulum odio. Pellentesque rutrum ac sem at convallis.
@@ -68,7 +68,7 @@
 					nulla. Duis porttitor velit eu elit lacinia pellentesque.
 				</p>
 				<div
-					class="flex text-stone-50 my-4 mt-2 md:mt-4 justify-center gap-4 md:gap-10 text-xs md:text-base">
+					class="flex text-stone-50 my-4 mt-2 lg:mt-4 justify-center gap-4 lg:gap-10 text-xs lg:text-base">
 					<button
 						class="flex items-center hover:text-primary transition-all">
 						Learn more
@@ -109,11 +109,11 @@
 			<h1 class="mx-4 my-4 text-3xl">News</h1>
 			<hr class="my-4 mb-8 border-0 border-b border-stone-600" />
 			<div
-				class="px-4 flex flex-col gap-4 w-full md:w-1/2 overflow-y-auto flex-1">
+				class="px-4 flex flex-col gap-4 w-full lg:w-1/2 overflow-y-auto flex-1">
 				<% news_list.forEach((item) => { %>
 				<a
 					href="/news/<%= item._id %>"
-					class="mx-4 text-xs md:text-base flex flex-row justify-between items-center">
+					class="mx-4 text-xs lg:text-base flex flex-row justify-between items-center">
 					<p><%= item.title %></p>
 					<p><%= item.timestamp %></p>
 				</a>

@@ -9,13 +9,14 @@ import summary from "./summary.js";
 
 import { loginGetHandler, loginPostHandler, logoutHandler } from "./login.js";
 import { registerGetHandler, registerPostHandler } from "./register.js";
-import { menuGetHandler } from "./menu.js";
+import { menuGetHandler, menuPostHandler } from "./menu.js";
 import dotenv from "dotenv";
 import {
 	addressGetHandler,
 	profileGetHandler,
 	profilePostHandler,
 } from "./profile.js";
+import { bagDelHandler, bagGetHandler, bagPostHandler } from "./bag.js";
 
 dotenv.config();
 
@@ -40,6 +41,15 @@ export const endpoints = [
 		path: "/menu",
 		method: "get",
 		handler: menuGetHandler,
+	},
+	{
+		name: "Menu",
+		on_navbar: false,
+		auth_required: 1,
+		on_private_navbar: false,
+		path: "/menu",
+		method: "post",
+		handler: menuPostHandler,
 	},
 	{
 		name: "Support",
@@ -163,6 +173,33 @@ export const endpoints = [
 		path: "/profile*",
 		method: "post",
 		handler: profilePostHandler,
+	},
+	{
+		name: "Bag",
+		on_navbar: false,
+		auth_required: 1,
+		on_private_navbar: false,
+		path: "/bag",
+		method: "get",
+		handler: bagGetHandler,
+	},
+	{
+		name: "Place Order",
+		on_navbar: false,
+		auth_required: 1,
+		on_private_navbar: false,
+		path: "/bag",
+		method: "post",
+		handler: bagPostHandler,
+	},
+	{
+		name: "Delete Bag Item",
+		on_navbar: false,
+		auth_required: 1,
+		on_private_navbar: false,
+		path: "/bag/del",
+		method: "post",
+		handler: bagDelHandler,
 	},
 	{
 		name: "Page Not Found",

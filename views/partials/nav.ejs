@@ -1,6 +1,6 @@
 <div class="flex text-inherit justify-end items-center text-lg">
 	<div
-		class="transition-all text-inherit container items-center justify-between gap-x-5 lg:gap-x-10 mx-5 lg:mx-10 text-xs lg:text-lg hidden md:flex">
+		class="transition-all text-inherit container items-center justify-between gap-x-5 lg:gap-x-10 mx-5 lg:mx-10 text-xs lg:text-lg hidden lg:flex">
 		<% endpoints.forEach((endpoint) => { %>
 		<a
 			href="<%= endpoint.path %>"
@@ -26,7 +26,7 @@
 		</a>
 		<% if(user) { %>
 		<button
-			class="hidden md:block"
+			class="hidden lg:block"
 			type="button"
 			id="accountDropDown"
 			data-te-dropdown-toggle-ref
@@ -80,7 +80,7 @@
 			</li>
 		</ul>
 		<% } else { %>
-		<a href="/login" class="hidden md:block">
+		<a href="/login" class="hidden lg:block">
 			<svg
 				xmlns="http://www.w3.org/2000/svg"
 				fill="none"
@@ -96,7 +96,7 @@
 		</a>
 		<% } %>
 		<button
-			class="group peer block md:hidden"
+			class="group peer block lg:hidden"
 			type="button"
 			data-te-collapse-init
 			data-te-target="#cart"

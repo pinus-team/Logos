@@ -9,6 +9,12 @@
 	.btn-active {
 		@apply bg-stone-50 border-stone-900;
 	}
+	.btn-bag-inactive {
+		@apply text-stone-900;
+	}
+	.btn-bag-active {
+		@apply text-stone-500;
+	}
 }
 
 @layer base {

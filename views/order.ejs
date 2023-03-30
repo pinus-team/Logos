@@ -88,38 +88,7 @@
 						class="flex flex-col gap-4 flex-1 border border-stone-300 p-4 shadow-md font-serif min-w-0">
 						<p class="font-serif text-base lg:text-xl">Items</p>
 						<hr class="border-0 border-b border-stone-400" />
-						<div class="flex flex-col gap-4">
-							<% order.items.forEach(item => { %>
-							<div
-								class="pl-8 flex flex-row justify-between items-center">
-								<div class="flex flex-col max-w-[66%]">
-									<p class="text-base lg:text-xl truncate">
-										<%= item.dish.title %>
-									</p>
-									<% item.addons.forEach(addon => { %>
-									<p class="pl-8 text-base lg:text-xl">
-										+ <%= addon.name %>
-									</p>
-									<% }) %> <% if (item.note) { %>
-									<p
-										class="font-serif text-sm lg:text-base italic opacity-70">
-										"<%=item.note %>"
-									</p>
-									<% } %>
-								</div>
-								<div class="flex flex-col items-end">
-									<p class="font-serif text-sm lg:text-base">
-										Qt. <%= item.quantity %>
-									</p>
-									<p class="font-serif text-xl lg:text-2xl">
-										$<%= item.price %>
-									</p>
-								</div>
-							</div>
-							<hr
-								class="border-0 border-b border-stone-200 brightness-90 flex-1 mx-4 last-of-type:hidden" />
-							<% }) %>
-						</div>
+
 						<hr class="border-0 border-b border-stone-400" />
 						<div class="flex flex-row">
 							<p class="font-serif text-base lg:text-xl">Total</p>

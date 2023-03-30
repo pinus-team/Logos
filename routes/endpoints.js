@@ -3,7 +3,7 @@ import not_found from "./not-found.js";
 import support from "./support.js";
 import story from "./story.js";
 import delivery from "./delivery.js";
-import restaurant from "./restaurant.js";
+import restaurant, { restaurantUpdateOrderStatus } from "./restaurant.js";
 import history from "./history.js";
 import summary from "./summary.js";
 
@@ -88,6 +88,15 @@ export const endpoints = [
 		path: "/restaurant",
 		method: "get",
 		handler: restaurant,
+	},
+	{
+		name: "Update Order Status",
+		on_navbar: false,
+		auth_required: 2,
+		on_private_navbar: false,
+		path: "/restaurant",
+		method: "post",
+		handler: restaurantUpdateOrderStatus,
 	},
 	{
 		name: "History",

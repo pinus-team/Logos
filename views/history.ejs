@@ -1,60 +1,80 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-p-16 snap-y snap-mandatory">
-  <head>
-    <%- include('./partials/head'); %>
-  </head>
-  <body class="font-sans text-stone-900 bg-gray-100">
-    <%- include('./partials/navbar'); %>
-    <div
-      class="flex text-center justify-center items-center overflow-hidden relative w-full h-full-with-nav snap-start"
-    >
-    <div class="w-full h-full p-4">
-        <div
-          class="bg-white w-full h-full drop-shadow-sm border-2 border-stone-600 p-4"
-        >
-        <div class="text-left"><p class="text-2xl">History</p></div>
-        <div class="grid grid-cols-4 gap-2 m-4">
-            <!-- Doing task -->
-            <% let currentDate = null; %>
-            <% order.sort((a, b) => new Date(a.order_date) - new Date(b.order_date)).forEach((item) => { %>
-              <% if (item.status === "Done") { %>
-                <% if (currentDate !== item.order_date) { %>
-                  <div class="col-span-4 text-left mb-4">
-                    <p><%= item.order_date %></p>
-                    <hr class="border-0 border-b-2 border-stone-600" />
-                  </div>
-                  <% currentDate = item.order_date; %>
-                <% } %>
-                <div
-                  class="min-h-16 p-2 flex flex-col justify-center border-2 border-stone-600 mb-4 "
-                  id="<%= item.order_id %>"
-                >
-                  <div class="text-left mb-4">#<%= item.order_id %></div>
-                  <div class="ml-2 mr-2">
-                    <% if (item.order_list.length > 1) { %>
-                      <div class="text-left">Orders</div>
-                    <% } else { %>
-                      <div class="text-left">Order</div>
-                    <% } %>
-                    <hr class="border-0 border-b-2 border-stone-600" />
-                    <div class="flex justify-between">
-                      <div class="m-4 text-left">
-                        <% item.order_list.forEach((menu, index) => { %>
-                          <p><%= index + 1 %>. <%= menu.menu_name %></p>
-                        <% }); %>
-                      </div>
-                      <div class="m-4 text-right">
-                        <% item.order_list.forEach((menu) => { %>
-                          <p>x <%= menu.quantity %></p> 
-                        <% }); %> 
-                      </div> 
-                    </div> 
-                  </div> 
-                </div> 
-              <% } %> 
-            <% }); %> 
-          </div>
-        
-    </div>
-  </body>
+<html lang="en">
+	<head>
+		<%- include('./partials/head'); %>
+	</head>
+	<body class="font-sans text-stone-900 bg-gray-100">
+		<%- include('./partials/navbar'); %>
+		<div
+			class="flex justify-center items-center overflow-hidden relative w-full h-full-with-nav snap-start p-4 gap-4">
+			<div class="flex w-full h-full flex-1 min-w-0">
+				<div
+					class="bg-white w-full h-full drop-shadow-sm border shadow-md p-4 overflow-y-auto">
+					<p class="text-2xl">History</p>
+					<div class="flex flex-col p-4 gap-4">
+						<% orders.forEach((day) => { %>
+						<div class="flex flex-col gap-2">
+							<p class="text-base"><%= day.date %></p>
+							<hr class="border-0 border-b border-stone-500" />
+							<div class="grid grid-cols-4 gap-4 p-4">
+								<% day.orders.forEach((order) => { %>
+								<div
+									class="min-h-16 p-4 flex flex-col border border-stone-600 gap-4">
+									<p>#<%= order._id %></p>
+									<div class="flex flex-col">
+										<div class="text-left">
+											<%= order.items.length > 1?
+											'Orders': 'Order' %>
+										</div>
+										<hr
+											class="border-0 border-b border-stone-600" />
+									</div>
+									<div class="flex flex-col gap-2">
+										<% order.items.forEach(item => { %>
+										<div
+											class="text-left px-4 flex flex-row justify-between items-center">
+											<div
+												class="flex flex-col max-w-[66%]">
+												<p
+													class="text-sm lg:text-base truncate">
+													<%= item.dish.title %>
+												</p>
+												<% item.addons.forEach(addon =>
+												{ %>
+												<p
+													class="pl-4 text-sm lg:text-base">
+													+ <%= addon.name %>
+												</p>
+												<% }) %> <% if (item.note) { %>
+												<p
+													class="text-sm lg:text-base italic opacity-70">
+													"<%=item.note %>"
+												</p>
+												<% } %>
+											</div>
+											<div
+												class="flex flex-col items-end">
+												<p class="text-2xs lg:text-xs">
+													Qt. <%= item.quantity %>
+												</p>
+												<p class="text-sm lg:text-base">
+													$<%= item.price.toFixed(2)
+													%>
+												</p>
+											</div>
+										</div>
+										<hr
+											class="border-0 border-b border-stone-200 brightness-90 flex-1 mx-4 last-of-type:hidden" />
+										<% }) %>
+									</div>
+								</div>
+								<% }) %>
+							</div>
+						</div>
+						<% }) %>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
 </html>

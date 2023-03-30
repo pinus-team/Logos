@@ -1,160 +1,504 @@
 <!DOCTYPE html>
 <html lang="en" class="scroll-p-16 snap-y snap-mandatory">
-	<head>
-		<%- include('./partials/head'); %>
-	</head>
-	<body class="font-sans text-stone-900">
-		<%- include('./partials/navbar'); %> <%-
-		include('./partials/promotion'); %>
-		<div
-			class="flex text-center justify-center items-center overflow-hidden relative w-full h-full-with-nav snap-start">
-			<img
-				src="https://picsum.photos/1920/640?<%= Math.random() %>"
-				class="object-cover w-full h-full -z-20 brightness-50" />
-			<div
-				class="absolute py-10 text-stone-50 z-0 drop-shadow-md w-4/6 flex flex-col gap-8">
-				<h1 class="text-2xl lg:text-6xl my-4 mb-0 lg:mb-4">
-					Maultaschen
-				</h1>
-				<p
-					class="opacity-90 text-xs hidden lg:inline-block lg:text-base md:line-clamp-3 lg:line-clamp-5">
-					Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-					Suspendisse ac nisl eu dolor dapibus mattis. Nulla eu
-					vestibulum odio. Pellentesque rutrum ac sem at convallis.
-					Curabitur id nisl nec lorem mattis commodo non sit amet
-					magna. Interdum et malesuada fames ac ante ipsum primis in
-					faucibus. Nullam cursus metus et velit viverra pharetra.
-					Nulla facilisi. Etiam eget orci ut lectus dignissim auctor.
-					Curabitur a libero ut est tincidunt molestie. Nam nunc ex,
-					dapibus nec blandit vel, porttitor at orci. Vivamus
-					faucibus, odio at finibus scelerisque, eros leo vestibulum
-					arcu, ut vulputate tellus ligula sit amet metus. Nullam
-					elementum felis enim. Quisque at justo imperdiet, tristique
-					lorem eu, pellentesque lacus. Fusce varius felis eros, non
-					placerat est eleifend a. Aliquam ex magna, suscipit vel
-					dapibus nec, placerat eget elit. Quisque sit amet
-					pellentesque ex, sed posuere dolor. Sed rhoncus elit eget
-					mauris dapibus consectetur. Aliquam id lorem eu est
-					vestibulum blandit. Aliquam ac eros consequat, feugiat urna
-					eu, sagittis tortor. Mauris finibus sem nec congue molestie.
-					Nulla eget bibendum lectus, in aliquam nisi. Mauris ultrices
-					nulla eget augue vehicula molestie. Integer et urna eu erat
-					accumsan tempor. Ut lacinia condimentum augue, in lobortis
-					tellus feugiat vitae. In facilisis tortor ante, at eleifend
-					ex tempus non. Nunc mollis consectetur mauris, a consectetur
-					mi ornare sit amet. Quisque laoreet volutpat vehicula. In
-					quis justo sagittis, rutrum sapien at, consectetur nisi. Nam
-					tempor sollicitudin odio ut lacinia. Nam rhoncus ullamcorper
-					turpis vel elementum. Morbi vestibulum, lacus nec
-					condimentum faucibus, odio mauris ornare sem, vitae euismod
-					dui ipsum ut nulla. Praesent et lectus tellus. Donec mattis
-					maximus sapien nec congue. Curabitur ligula tellus,
-					ultricies condimentum aliquam sed, sollicitudin faucibus
-					magna. Ut nunc sem, scelerisque eu scelerisque in, dignissim
-					et nisi. Ut pharetra tempor sodales. Orci varius natoque
-					penatibus et magnis dis parturient montes, nascetur
-					ridiculus mus. Fusce vel orci a mi bibendum sollicitudin eu
-					in nisi. Curabitur ac congue felis, eget tempor neque. Donec
-					tempor mattis sem eget porttitor. Maecenas viverra nisi
-					nunc, ac mollis lacus congue a. Mauris ut felis
-					pellentesque, auctor nisl vel, accumsan dui. Etiam sed
-					tellus sed sem mattis semper sit amet id tortor. Donec sit
-					amet lorem ante. Aenean leo urna, hendrerit vitae bibendum
-					ac, aliquam a nunc. Pellentesque habitant morbi tristique
-					senectus et netus et malesuada fames ac turpis egestas.
-					Praesent quis justo enim. Mauris non eleifend ligula. Donec
-					eros ex, dignissim sed imperdiet id, mollis at dui. Nullam
-					auctor dolor ac eleifend sodales. Vestibulum nec dignissim
-					nulla. Duis porttitor velit eu elit lacinia pellentesque.
-				</p>
-				<div
-					class="flex text-stone-50 my-4 mt-2 lg:mt-4 justify-center gap-4 lg:gap-10 text-xs lg:text-base">
-					<button
-						class="flex items-center hover:text-primary transition-all">
-						Learn more
-						<svg
-							xmlns="http://www.w3.org/2000/svg"
-							fill="none"
-							viewBox="0 0 24 24"
-							stroke-width="2"
-							stroke="currentColor"
-							class="w-4 h-6 drop-shadow-md">
-							<path
-								stroke-linecap="round"
-								stroke-linejoin="round"
-								d="M8.25 4.5l7.5 7.5-7.5 7.5" />
-						</svg>
-					</button>
-					<button
-						class="flex items-center hover:text-primary transition-all">
-						Order
-						<svg
-							xmlns="http://www.w3.org/2000/svg"
-							fill="none"
-							viewBox="0 0 24 24"
-							stroke-width="2"
-							stroke="currentColor"
-							class="w-4 h-6 drop-shadow-md">
-							<path
-								stroke-linecap="round"
-								stroke-linejoin="round"
-								d="M8.25 4.5l7.5 7.5-7.5 7.5" />
-						</svg>
-					</button>
-				</div>
-			</div>
-		</div>
-		<div
-			class="p-8 overflow-hidden flex flex-col h-full-with-nav snap-start">
-			<h1 class="mx-4 my-4 text-3xl">News</h1>
-			<hr class="my-4 mb-8 border-0 border-b border-stone-600" />
-			<div
-				class="px-4 flex flex-col gap-4 w-full lg:w-1/2 overflow-y-auto flex-1">
-				<% news_list.forEach((item) => { %>
-				<a
-					href="/news/<%= item._id %>"
-					class="mx-4 text-xs lg:text-base flex flex-row justify-between items-center">
-					<p><%= item.title %></p>
-					<p><%= item.timestamp %></p>
-				</a>
-				<hr
-					class="border-0 border-b last-of-type:border-0 border-stone-600 opacity-50 flex-1" />
-				<% }); %>
-			</div>
-		</div>
-		<div
-			class="w-full h-full-with-nav flex text-center justify-end items-center overflow-hidden relative snap-start">
-			<video
-				class="absolute w-full h-full object-cover"
-				autoplay
-				muted
-				loop>
-				<source src="/vid/News.mp4" type="video/mp4" />
-			</video>
-			<div
-				class="h-full flex-1 bg-gradient-to-r from-transparent to-stone-900 relative flex flex-col items-end justify-center text-stone-50">
-				<div
-					class="flex flex-col p-4 w-full lg:w-1/2 xl:w-1/3 gap-12 items-center">
-					<img src="/svg/Number1-white.svg" class="w-32 h-auto" />
-					<p class="text-4xl">Awards</p>
-					<p class="text-sm">
-						"Lorem ipsum dolor sit amet, consectetur adipiscing
-						elit. Nullam tincidunt nunc non pharetra ornare. Nam
-						facilisis augue vel felis blandit, id dapibus elit
-						gravida. Donec vitae consequat lacus, et ullamcorper
-						augue. Praesent vestibulum diam eget est efficitur, eu
-						egestas risus faucibus. Vivamus malesuada imperdiet nibh
-						vel commodo."
-					</p>
-					<p class="text-sm opacity-60">
-						Nam maximus mauris in volutpat congue. In est elit,
-						cursus quis consectetur eu, maximus id turpis. In
-						bibendum, ipsum a efficitur rhoncus, ante nibh viverra
-						ipsum, congue blandit mi enim eu justo.
-					</p>
-				</div>
-			</div>
-		</div>
-	</body>
-	<footer><%- include('./partials/footer'); %></footer>
+   <head>
+      <%- include('./partials/head'); %>
+   </head>
+   <body class="font-sans text-stone-900">
+      <%- include('./partials/navbar'); %> <%- include('./partials/promotion'); %>
+      <div
+         class="flex text-center justify-center items-center overflow-hidden relative w-full h-full-with-nav snap-start"
+         >
+         <img
+            src="https://picsum.photos/1920/640?<%= Math.random() %>"
+            class="object-cover w-full h-full -z-20 brightness-50"
+            />
+         <div
+            class="absolute py-10 text-stone-50 z-0 drop-shadow-md w-4/6 flex flex-col gap-8"
+            >
+            <h1 class="text-2xl lg:text-6xl my-4 mb-0 lg:mb-4">Maultaschen</h1>
+            <p
+               class="opacity-90 text-xs hidden lg:inline-block lg:text-base lg:line-clamp-3 lg:line-clamp-5"
+               >
+               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
+               ac nisl eu dolor dapibus mattis. Nulla eu vestibulum odio.
+               Pellentesque rutrum ac sem at convallis. Curabitur id nisl nec lorem
+               mattis commodo non sit amet magna. Interdum et malesuada fames ac ante
+               ipsum primis in faucibus. Nullam cursus metus et velit viverra
+               pharetra. Nulla facilisi. Etiam eget orci ut lectus dignissim auctor.
+               Curabitur a libero ut est tincidunt molestie. Nam nunc ex, dapibus nec
+               blandit vel, porttitor at orci. Vivamus faucibus, odio at finibus
+               scelerisque, eros leo vestibulum arcu, ut vulputate tellus ligula sit
+               amet metus. Nullam elementum felis enim. Quisque at justo imperdiet,
+               tristique lorem eu, pellentesque lacus. Fusce varius felis eros, non
+               placerat est eleifend a. Aliquam ex magna, suscipit vel dapibus nec,
+               placerat eget elit. Quisque sit amet pellentesque ex, sed posuere
+               dolor. Sed rhoncus elit eget mauris dapibus consectetur. Aliquam id
+               lorem eu est vestibulum blandit. Aliquam ac eros consequat, feugiat
+               urna eu, sagittis tortor. Mauris finibus sem nec congue molestie.
+               Nulla eget bibendum lectus, in aliquam nisi. Mauris ultrices nulla
+               eget augue vehicula molestie. Integer et urna eu erat accumsan tempor.
+               Ut lacinia condimentum augue, in lobortis tellus feugiat vitae. In
+               facilisis tortor ante, at eleifend ex tempus non. Nunc mollis
+               consectetur mauris, a consectetur mi ornare sit amet. Quisque laoreet
+               volutpat vehicula. In quis justo sagittis, rutrum sapien at,
+               consectetur nisi. Nam tempor sollicitudin odio ut lacinia. Nam rhoncus
+               ullamcorper turpis vel elementum. Morbi vestibulum, lacus nec
+               condimentum faucibus, odio mauris ornare sem, vitae euismod dui ipsum
+               ut nulla. Praesent et lectus tellus. Donec mattis maximus sapien nec
+               congue. Curabitur ligula tellus, ultricies condimentum aliquam sed,
+               sollicitudin faucibus magna. Ut nunc sem, scelerisque eu scelerisque
+               in, dignissim et nisi. Ut pharetra tempor sodales. Orci varius natoque
+               penatibus et magnis dis parturient montes, nascetur ridiculus mus.
+               Fusce vel orci a mi bibendum sollicitudin eu in nisi. Curabitur ac
+               congue felis, eget tempor neque. Donec tempor mattis sem eget
+               porttitor. Maecenas viverra nisi nunc, ac mollis lacus congue a.
+               Mauris ut felis pellentesque, auctor nisl vel, accumsan dui. Etiam sed
+               tellus sed sem mattis semper sit amet id tortor. Donec sit amet lorem
+               ante. Aenean leo urna, hendrerit vitae bibendum ac, aliquam a nunc.
+               Pellentesque habitant morbi tristique senectus et netus et malesuada
+               fames ac turpis egestas. Praesent quis justo enim. Mauris non eleifend
+               ligula. Donec eros ex, dignissim sed imperdiet id, mollis at dui.
+               Nullam auctor dolor ac eleifend sodales. Vestibulum nec dignissim
+               nulla. Duis porttitor velit eu elit lacinia pellentesque.
+            </p>
+            <div
+               class="flex text-stone-50 my-4 mt-2 lg:mt-4 justify-center gap-4 lg:gap-10 text-xs lg:text-base"
+               >
+               <button class="flex items-center hover:text-primary transition-all">
+                  Learn more
+                  <svg
+                     xmlns="http://www.w3.org/2000/svg"
+                     fill="none"
+                     viewBox="0 0 24 24"
+                     stroke-width="2"
+                     stroke="currentColor"
+                     class="w-4 h-6 drop-shadow-md"
+                     >
+                     <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        d="M8.25 4.5l7.5 7.5-7.5 7.5"
+                        />
+                  </svg>
+               </button>
+               <button class="flex items-center hover:text-primary transition-all">
+                  Order
+                  <svg
+                     xmlns="http://www.w3.org/2000/svg"
+                     fill="none"
+                     viewBox="0 0 24 24"
+                     stroke-width="2"
+                     stroke="currentColor"
+                     class="w-4 h-6 drop-shadow-md"
+                     >
+                     <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        d="M8.25 4.5l7.5 7.5-7.5 7.5"
+                        />
+                  </svg>
+               </button>
+            </div>
+         </div>
+      </div>
+      <div class="p-8 overflow-hidden flex flex-col h-full-with-nav snap-start">
+         <h1 class="mx-4 my-4 text-3xl">News</h1>
+         <hr class="my-4 mb-8 border-0 border-b border-stone-600" />
+         <div
+            class="px-4 flex flex-col gap-4 w-full lg:w-1/2 overflow-y-auto flex-1"
+            >
+            <% news_list.forEach((item) => { %>
+            <a
+               href="/news/<%= item._id %>"
+               class="mx-4 text-xs lg:text-base flex flex-row justify-between items-center"
+               >
+               <p><%= item.title %></p>
+               <p><%= item.timestamp %></p>
+            </a>
+            <hr
+               class="border-0 border-b last-of-type:border-0 border-stone-600 opacity-50 flex-1"
+               />
+            <% }); %>
+         </div>
+      </div>
+      <div
+         class="w-full h-full-with-nav flex text-center justify-end items-center overflow-hidden relative snap-start"
+         >
+         <video class="absolute w-full h-full object-cover" autoplay muted loop>
+            <source src="/vid/News.mp4" type="video/mp4" />
+         </video>
+         <div
+            class="h-full flex-1 bg-gradient-to-r from-transparent to-stone-900 relative flex flex-col items-end justify-center text-stone-50"
+            >
+            <div
+               class="flex flex-col p-4 w-full lg:w-1/2 xl:w-1/3 gap-12 items-center"
+               >
+               <img src="/svg/Number1-white.svg" class="w-32 h-auto" />
+               <p class="text-4xl">Awards</p>
+               <p class="text-sm">
+                  "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam
+                  tincidunt nunc non pharetra ornare. Nam facilisis augue vel felis
+                  blandit, id dapibus elit gravida. Donec vitae consequat lacus, et
+                  ullamcorper augue. Praesent vestibulum diam eget est efficitur, eu
+                  egestas risus faucibus. Vivamus malesuada imperdiet nibh vel
+                  commodo."
+               </p>
+               <p class="text-sm opacity-60">
+                  Nam maximus mauris in volutpat congue. In est elit, cursus quis
+                  consectetur eu, maximus id turpis. In bibendum, ipsum a efficitur
+                  rhoncus, ante nibh viverra ipsum, congue blandit mi enim eu justo.
+               </p>
+            </div>
+         </div>
+      </div>
+      <!-- Popular menu -->
+      <div
+         class="w-full h-full-with-nav flex flex-col md:flex-row text-center justify-center items-start overflow-hidden relative snap-start bg-black md:space-x-4"
+         >
+         <div class="flex-col p-10 text-left md:w-1/2">
+            <p class="text-slate-500 text-xl">Main dish</p>
+            <p class="text-white text-3xl">Bratwurast</p>
+            <p class="text-white w-full md:w-2/3"> is a type of German sausage made from pork or, less commonly, beef or veal. The name is derived from the Old High German Brätwurst, from brät-, finely chopped meat, and Wurst, sausage. It is typically grilled or pan-fried and served with mustard and sauerkraut.</p>
+            <div
+               class="flex text-stone-50 my-4 mt-2 lg:mt-4 justify-center gap-4 lg:gap-10 text-xs lg:text-base"
+               >
+               <button class="flex items-center text-primary transition-all">
+                  Learn more
+                  <svg
+                     xmlns="http://www.w3.org/2000/svg"
+                     fill="none"
+                     viewBox="0 0 24 24"
+                     stroke-width="2"
+                     stroke="currentColor"
+                     class="w-4 h-6 drop-shadow-md"
+                     >
+                     <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        d="M8.25 4.5l7.5 7.5-7.5 7.5"
+                        />
+                  </svg>
+               </button>
+               <button class="flex items-center hover:text-primary hover:bg-transparent text-black transition-all bg-primary pl-5 pr-5 pt-2 pb-2">
+                  Order
+                  <svg
+                     xmlns="http://www.w3.org/2000/svg"
+                     fill="none"
+                     viewBox="0 0 24 24"
+                     stroke-width="2"
+                     stroke="currentColor"
+                     class="w-4 h-6 drop-shadow-md"
+                     >
+                     <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        d="M8.25 4.5l7.5 7.5-7.5 7.5"
+                        />
+                  </svg>
+               </button>
+            </div>
+         </div>
+         <div class="w-full h-full flex-col p-4 text-left md:w-1/2">
+            <div class="">
+               <img
+                  alt="Bratwurst"
+                  class="absolute h-full object-left"
+                  src="img/Bratwurst.png"
+                />
+            </div>
+         </div>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+         <div class="w-screen h-screen bg-white snap-start">
+            <div class="flex flex-col md:w-1/2 justify-center items-center">
+               <div class="p-10">
+                  <p class="text-slate-500 text-xl">Appitiser</p>
+                  <p class="text-black text-3xl">Kartoffelpuffer</p>
+                  <p class="text-black w-full"> German Potato Pancakes. They are great on their own and commonly served with apple sauce, sour cream or cured salmon.</p>
+               </div>
+               <div
+                  class="flex text-stone-50 my-4 mt-2 lg:mt-4 justify-center gap-4 lg:gap-10 text-xs lg:text-base"
+                  >
+                  <button class="flex items-center text-black transition-all">
+                     Learn more
+                     <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke-width="2"
+                        stroke="currentColor"
+                        class="w-4 h-6 drop-shadow-md"
+                        >
+                        <path
+                           stroke-linecap="round"
+                           stroke-linejoin="round"
+                           d="M8.25 4.5l7.5 7.5-7.5 7.5"
+                           />
+                     </svg>
+                  </button>
+                  <button class="flex items-center hover:text-primary hover:bg-transparent text-black transition-all bg-primary pl-5 pr-5 pt-2 pb-2">
+                     Order
+                     <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke-width="2"
+                        stroke="currentColor"
+                        class="w-4 h-6 drop-shadow-md"
+                        >
+                        <path
+                           stroke-linecap="round"
+                           stroke-linejoin="round"
+                           d="M8.25 4.5l7.5 7.5-7.5 7.5"
+                           />
+                     </svg>
+                  </button>
+               </div>
+            </div>
+            <div class="w-1/2 h-full flex p-10">
+               <div class="">
+                  <img alt="Kartoffelpuffer" class=" w-full object-cover object-center" src="img/Kartoffelpuffer.png"/> 
+               </div>
+            </div>
+         </div>
+         <div class="w-screen h-screen snap-start">
+            <div class="flex flex-col md:w-1/2 justify-center items-center">
+               <div class="p-10">
+                  <p class="text-slate-500 text-xl">Side</p>
+                  <p class="text-black text-3xl">Bratkartoffeln</p>
+                  <p class="text-black w-full"> as “fried potatoes”. It’s a beloved dish that consists of pan-fried potatoes, bacon, onions, and seasonings. The cold boiled potatoes are sliced into 1/4-inch slices and placed in a single layer in hot fat.</p>
+               </div>
+               <div
+                  class="flex text-stone-50 my-4 mt-2 lg:mt-4 justify-center gap-4 lg:gap-10 text-xs lg:text-base"
+                  >
+                  <button class="flex items-center text-black transition-all">
+                     Learn more
+                     <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke-width="2"
+                        stroke="currentColor"
+                        class="w-4 h-6 drop-shadow-md"
+                        >
+                        <path
+                           stroke-linecap="round"
+                           stroke-linejoin="round"
+                           d="M8.25 4.5l7.5 7.5-7.5 7.5"
+                           />
+                     </svg>
+                  </button>
+                  <button class="flex items-center hover:text-primary hover:bg-transparent text-black transition-all bg-primary pl-5 pr-5 pt-2 pb-2">
+                     Order
+                     <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke-width="2"
+                        stroke="currentColor"
+                        class="w-4 h-6 drop-shadow-md"
+                        >
+                        <path
+                           stroke-linecap="round"
+                           stroke-linejoin="round"
+                           d="M8.25 4.5l7.5 7.5-7.5 7.5"
+                           />
+                     </svg>
+                  </button>
+               </div>
+            </div>
+            <div class="w-1/2 h-full flex p-10">
+               <div class="mt-1/2">
+                  <img alt="Bratwurast" class=" w-full object-cover object-center"  src="img/Bratkartoffeln.png"/> 
+               </div>
+            </div>
+         </div>
+         <div class="w-screen h-screen snap-start">
+            <div class="flex flex-col md:w-1/2 justify-center items-center">
+               <div class="p-10">
+                  <p class="text-slate-500 text-xl">Drink</p>
+                  <p class="text-black text-3xl">Schnapps</p>
+                  <p class="text-black w-full"> is a popular traditional German alcoholic drink made from fermented fruit. Schnapps can come in various forms, flavors and tastes.</p>
+               </div>
+               <div
+                  class="flex text-stone-50 my-4 mt-2 lg:mt-4 justify-center gap-4 lg:gap-10 text-xs lg:text-base"
+                  >
+                  <button class="flex items-center text-black transition-all">
+                     Learn more
+                     <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke-width="2"
+                        stroke="currentColor"
+                        class="w-4 h-6 drop-shadow-md"
+                        >
+                        <path
+                           stroke-linecap="round"
+                           stroke-linejoin="round"
+                           d="M8.25 4.5l7.5 7.5-7.5 7.5"
+                           />
+                     </svg>
+                  </button>
+                  <button class="flex items-center hover:text-primary hover:bg-transparent text-black transition-all bg-primary pl-5 pr-5 pt-2 pb-2">
+                     Order
+                     <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke-width="2"
+                        stroke="currentColor"
+                        class="w-4 h-6 drop-shadow-md"
+                        >
+                        <path
+                           stroke-linecap="round"
+                           stroke-linejoin="round"
+                           d="M8.25 4.5l7.5 7.5-7.5 7.5"
+                           />
+                     </svg>
+                  </button>
+               </div>
+            </div>
+            <div class="w-1/2 h-full flex p-10">
+               <div class="mt-1/2">
+                  <img alt="Bratwurast" class=" w-full object-cover object-center"  src="img/Schnapps.png"/> 
+               </div>
+            </div>
+         </div>
+         <div class="w-screen h-screen snap-start">
+            <div class="flex flex-col md:w-1/2 justify-center items-center">
+               <div class="p-10">
+                  <p class="text-slate-500 text-xl">Sweet</p>
+                  <p class="text-black text-3xl">Black Forest Cake</p>
+                  <p class="text-black w-full">  It’s a delicious German recipe and is perfect for any occasion.</p>
+               </div>
+               <div
+                  class="flex text-stone-50 my-4 mt-2 lg:mt-4 justify-center gap-4 lg:gap-10 text-xs lg:text-base"
+                  >
+                  <button class="flex items-center text-black transition-all">
+                     Learn more
+                     <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke-width="2"
+                        stroke="currentColor"
+                        class="w-4 h-6 drop-shadow-md"
+                        >
+                        <path
+                           stroke-linecap="round"
+                           stroke-linejoin="round"
+                           d="M8.25 4.5l7.5 7.5-7.5 7.5"
+                           />
+                     </svg>
+                  </button>
+                  <button class="flex items-center hover:text-primary hover:bg-transparent text-black transition-all bg-primary pl-5 pr-5 pt-2 pb-2">
+                     Order
+                     <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke-width="2"
+                        stroke="currentColor"
+                        class="w-4 h-6 drop-shadow-md"
+                        >
+                        <path
+                           stroke-linecap="round"
+                           stroke-linejoin="round"
+                           d="M8.25 4.5l7.5 7.5-7.5 7.5"
+                           />
+                     </svg>
+                  </button>
+               </div>
+            </div>
+            <div class="w-1/2 h-full flex p-10">
+               <div class="mt-1/2">
+                  <img alt="Cake" class=" w-full object-cover object-center"  src="img/Cake.png"/> 
+               </div>
+            </div>
+         </div>
+         <div class="w-screen h-screen snap-start">
+            <div class="flex flex-col md:w-1/2 justify-center items-center">
+               <div class="p-10">
+                  <p class="text-slate-500 text-xl">Snack</p>
+                  <p class="text-black text-3xl">Brezel–Pretzel</p>
+                  <p class="text-black w-full"> is the ultimate German snack! This famous knotted bread is soft on the inside and crispy on the outside. It’s perfect for dipping into mustard or cheese.</p>
+               </div>
+               <div
+                  class="flex text-stone-50 my-4 mt-2 lg:mt-4 justify-center gap-4 lg:gap-10 text-xs lg:text-base"
+                  >
+                  <button class="flex items-center text-black transition-all">
+                     Learn more
+                     <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke-width="2"
+                        stroke="currentColor"
+                        class="w-4 h-6 drop-shadow-md"
+                        >
+                        <path
+                           stroke-linecap="round"
+                           stroke-linejoin="round"
+                           d="M8.25 4.5l7.5 7.5-7.5 7.5"
+                           />
+                     </svg>
+                  </button>
+                  <button class="flex items-center hover:text-primary hover:bg-transparent text-black transition-all bg-primary pl-5 pr-5 pt-2 pb-2">
+                     Order
+                     <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke-width="2"
+                        stroke="currentColor"
+                        class="w-4 h-6 drop-shadow-md"
+                        >
+                        <path
+                           stroke-linecap="round"
+                           stroke-linejoin="round"
+                           d="M8.25 4.5l7.5 7.5-7.5 7.5"
+                           />
+                     </svg>
+                  </button>
+               </div>
+            </div>
+            <div class="w-1/2 h-full flex p-10">
+               <div class="mt-1/2">
+                  <img alt="Bratwurast" class=" w-full object-cover object-center"  src="img/Brezel–Pretzel.png"/> 
+               </div>
+            </div>
+         </div>
+         <div class="w-screen h-screen snap-start">
+            <div class="flex flex-col md:w-1/2 justify-center items-center">
+               <div class="p-10">
+                  <p class="text-slate-500 text-xl">What you are looking for</p>
+                  <p class="text-black text-3xl">Discover</p>
+                  <p class="text-black w-full">Our restaurant offers a wide variety of delicious dishes that are sure to satisfy your cravings. Come and enjoy our food today!</p>
+               </div>
+               <div
+                  class="flex text-stone-50 my-4 mt-2 lg:mt-4 justify-center gap-4 lg:gap-10 text-xs lg:text-base"
+                  >
+                  <button class="flex items-center hover:text-primary hover:bg-transparent text-black transition-all bg-primary pl-5 pr-5 pt-2 pb-2">
+                     Explore
+                     <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke-width="2"
+                        stroke="currentColor"
+                        class="w-4 h-6 drop-shadow-md"
+                        >
+                        <path
+                           stroke-linecap="round"
+                           stroke-linejoin="round"
+                           d="M8.25 4.5l7.5 7.5-7.5 7.5"
+                           />
+                     </svg>
+                  </button>
+               </div>
+            </div>
+         </div>
+      </div>
+      <footer><%- include('./partials/footer'); %></footer>
 </html>

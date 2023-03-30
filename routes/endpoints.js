@@ -54,15 +54,6 @@ export const endpoints = [
 		handler: menuPostHandler,
 	},
 	{
-		name: "Support",
-		on_navbar: true,
-		auth_required: 0,
-		on_private_navbar: false,
-		path: "/support",
-		method: "get",
-		handler: support,
-	},
-	{
 		name: "Story",
 		on_navbar: true,
 		auth_required: 0,
@@ -70,6 +61,15 @@ export const endpoints = [
 		path: "/story",
 		method: "get",
 		handler: story,
+	},
+	{
+		name: "Support",
+		on_navbar: true,
+		auth_required: 0,
+		on_private_navbar: false,
+		path: "/support",
+		method: "get",
+		handler: support,
 	},
 	{
 		name: "Delivery",

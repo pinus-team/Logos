@@ -35,10 +35,23 @@ export const addressGetHandler = async (req, res) => {
 	});
 };
 
+export const orderGetHandler = async (req, res) => {
+	const orders = await axios
+		.get(`http://${host}:8000/order/user/${req.user_data._id}`)
+		.then((result) => {
+			return result.data;
+		});
+	res.render("userorder", {
+		title: "Pinus Sylvestris",
+		endpoints: getNameAndPath(),
+		user: req.user_data,
+		orders,
+	})
+};
 export const profilePostHandler = async (req, res) => {
 	if (req.body.address) {
 		if (!req.body.change_latlon) {
-            console.log("Requesting Geolocation service.")
+			console.log("Requesting Geolocation service.");
 			const locationString = `${req.body.address}, ${req.body.city}, ${req.body.province} ${req.body.postal_code}`;
 			console.log(locationString);
 			const geoloc = await axios
@@ -58,11 +71,6 @@ export const profilePostHandler = async (req, res) => {
 		};
 	}
 	req.body._id = req.user_data._id;
-	await axios.post(`http://${host}:8000/user/`, req.body).catch((err) => {
-		console.log(
-			util.inspect(err.response.data.errInfo.details, { depth: 10 })
-		);
-		// console.table(err.response.data.errInfo.details.schemaRulesNotSatisfied[0].propertiesNotSatisfied[0]);
-	});
+	await axios.post(`http://${host}:8000/user/`, req.body);
 	res.redirect(req.originalUrl);
 };

@@ -165,7 +165,7 @@
 								<%= item.dish.title %>
 							</p>
 							<p class="text-sm lg:text-base">
-								$<%= item.price %>
+								$<%= item.price.toFixed(2) %>
 							</p>
 						</div>
 						<% }); %>

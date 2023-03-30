@@ -13,10 +13,12 @@ import { menuGetHandler, menuPostHandler } from "./menu.js";
 import dotenv from "dotenv";
 import {
 	addressGetHandler,
+	orderGetHandler,
 	profileGetHandler,
 	profilePostHandler,
 } from "./profile.js";
 import { bagDelHandler, bagGetHandler, bagPostHandler } from "./bag.js";
+import { orderSingleGetHandler } from "./order.js";
 
 dotenv.config();
 
@@ -151,6 +153,14 @@ export const endpoints = [
 		handler: registerPostHandler,
 	},
 	{
+		name: "Order",
+		on_navbar: false,
+		auth_required: 1,
+		path: "/order",
+		method: "get",
+		handler: orderSingleGetHandler,
+	},
+	{
 		name: "Profile",
 		on_navbar: false,
 		auth_required: 1,
@@ -165,6 +175,14 @@ export const endpoints = [
 		path: "/profile/address",
 		method: "get",
 		handler: addressGetHandler,
+	},
+	{
+		name: "Order",
+		on_navbar: false,
+		auth_required: 1,
+		path: "/profile/orders",
+		method: "get",
+		handler: orderGetHandler,
 	},
 	{
 		name: "Change Profile",

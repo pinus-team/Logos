@@ -20,20 +20,22 @@ export default (req, res, next) => {
 		);
 	}
 	const endpoint = endpoints
+		.slice()
+		.reverse()
 		.find((endpoint) => {
-			return endpoint.path.startsWith(req.originalUrl);
+			return req.originalUrl.startsWith(endpoint.path);
 		});
 	if (!endpoint) {
 		return next();
 	}
-    console.log(endpoint.name)
+	console.log(endpoint.name);
 	if (endpoint.auth_required != 0) {
 		if (req.user_data) {
 			if (endpoint.auth_required - 1 <= req.user_data.role) {
 				return next();
 			} else {
-                return res.redirect("/");
-            }
+				return res.redirect("/");
+			}
 		} else {
 			return res.redirect("/login");
 		}

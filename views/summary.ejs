@@ -192,7 +192,6 @@
 			var best_selling_today = JSON.parse(
 				`<%- JSON.stringify(best_selling) %>`
 			);
-			console.log(best_selling_today);
 			const dataPie = {
 				labels: best_selling_today.map((dish) => {
 					return dish.title;

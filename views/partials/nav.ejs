@@ -10,6 +10,11 @@
 		<% }); %>
 	</div>
 	<div class="flex justify-self-end gap-x-5 items-center">
+		<% if(user && user.auth_zone) { %>
+		<p class="whitespace-nowrap font-light pr-4">
+			<%= new Date().toLocaleString() %>
+		</p>
+		<% } %>
 		<a href="/bag">
 			<svg
 				xmlns="http://www.w3.org/2000/svg"

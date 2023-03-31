@@ -23,7 +23,10 @@ export default (req, res, next) => {
 		.slice()
 		.reverse()
 		.find((endpoint) => {
-			return req.originalUrl.startsWith(endpoint.path) && req.method.toLowerCase() == endpoint.method.toLowerCase();
+			return (
+				req.originalUrl.startsWith(endpoint.path) &&
+				req.method.toLowerCase() == endpoint.method.toLowerCase()
+			);
 		});
 	if (!endpoint) {
 		return next();
@@ -32,6 +35,7 @@ export default (req, res, next) => {
 	if (endpoint.auth_required != 0) {
 		if (req.user_data) {
 			if (endpoint.auth_required - 1 <= req.user_data.role) {
+				if (req.originalUrl.includes("restaurant")) req.user_data.auth_zone = true;
 				return next();
 			} else {
 				return res.redirect("/");

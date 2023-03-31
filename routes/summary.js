@@ -20,12 +20,12 @@ export default async (req, res) => {
 		});
 	const sums_monthly = sums.filter((sum) => {
 		return (
-			new Date(sums[0].date).getFullYear() == now.getFullYear() &&
-			new Date(sums[0].date).getMonth() == now.getMonth()
+			new Date(sum.date).getFullYear() == now.getFullYear() &&
+			new Date(sum.date).getMonth() == now.getMonth()
 		);
 	});
 	const sums_yearly = sums.filter((sum) => {
-		return new Date(sums[0].date).getFullYear() == now.getFullYear();
+		return new Date(sum.date).getFullYear() == now.getFullYear();
 	});
 	res.render("summary", {
 		title: "Pinus Sylvestris",

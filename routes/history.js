@@ -30,7 +30,7 @@ export default async (req, res) => {
 	orders_grouped.sort((a, b) => {
 		return new Date(b.date) - new Date(a.date);
 	});
-	console.log(orders_grouped)
+	// console.log(orders_grouped)
 	res.render("history", {
 		title: "Pinus Sylvestris",
 		endpoints: getPrivateNameAndPath(),

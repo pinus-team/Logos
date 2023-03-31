@@ -62,7 +62,7 @@
 						class="min-h-16 p-4 flex flex-col border border-stone-600 gap-4">
 						<div class="flex flex-row justify-between">
 							<p>#<%= order._id %></p>
-							<p>To <%= order.user_data.username %></p>
+							<p>To: <span class="italic font-light"><%= `${order.user_data.first_name} ${order.user_data.last_name}` %></span></p>
 						</div>
 						<div class="flex flex-col">
 							<p class="text-left">Address</p>

@@ -9,8 +9,11 @@ export default async (req, res) => {
 		.then((result) => {
             return result.data;
         });
+	news_list.sort((a, b) => {
+		return new Date(b.timestamp) - new Date(a.timestamp);
+	});
     news_list.forEach((item) => {
-        item.timestamp = new Date(item.timestamp).toLocaleString();
+        item.timestamp = new Date(item.timestamp * 1000).toLocaleString();
     });
 	res.render("index", {
 		title: "Pinus Sylvestris",

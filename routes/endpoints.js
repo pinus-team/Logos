@@ -19,6 +19,7 @@ import {
 } from "./profile.js";
 import { bagDelHandler, bagGetHandler, bagPostHandler } from "./bag.js";
 import { orderSingleGetHandler } from "./order.js";
+import newsGetHandler from "./news.js";
 
 dotenv.config();
 
@@ -34,6 +35,15 @@ export const endpoints = [
 		path: "/",
 		method: "get",
 		handler: home,
+	},
+	{
+		name: "News",
+		on_navbar: false,
+		auth_required: 0,
+		on_private_navbar: false,
+		path: "/news",
+		method: "get",
+		handler: newsGetHandler,
 	},
 	{
 		name: "Menu",

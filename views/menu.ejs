@@ -49,9 +49,18 @@
           <script defer>
             function handleInput() {
               const articles = <%- JSON.stringify(food_list) %>;
-              searching(articles);
+              const searchInput = document.querySelector("#simple-search");
+              const suggestions = document.querySelector("#suggestions");
+          
+              if (searchInput.value.trim() === "") {
+                suggestions.classList.add("hidden");
+              } else {
+                suggestions.classList.remove("hidden");
+                searching(articles);
+              }
             }
           </script>
+          
 
           <input
             type="text"
@@ -63,7 +72,7 @@
           />
           <div
             id="suggestions"
-            class="hidden absolute z-10 w-full bg-white shadow-md rounded-lg mt-4"
+            class="hidden text-black absolute z-10 w-full bg-white shadow-md rounded-lg mt-4"
           >
             <div class="text-sm p-2 text-stone-500">Quick links</div>
             <% if (food_list.length) { %>

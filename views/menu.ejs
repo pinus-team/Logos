@@ -22,6 +22,80 @@
         </div>
       </div>
     </section>
+
+    <!-- search -->
+    <div class="w-full">
+      <form class="flex items-center justify-center m-12 mb-0">
+        <label for="simple-search" class="sr-only">Search</label>
+        <div class="relative w-full" id="search-section">
+          <div
+            class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none"
+          >
+            <svg
+              aria-hidden="true"
+              class="w-5 h-5 text-gray-500 dark:text-gray-400"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
+                clip-rule="evenodd"
+              ></path>
+            </svg>
+          </div>
+
+          <script defer>
+            function handleInput() {
+              const articles = <%- JSON.stringify(food_list) %>;
+              const searchInput = document.querySelector("#simple-search");
+              const suggestions = document.querySelector("#suggestions");
+          
+              if (searchInput.value.trim() === "") {
+                suggestions.classList.add("hidden");
+              } else {
+                suggestions.classList.remove("hidden");
+                searching(articles);
+              }
+            }
+          </script>
+          
+
+          <input
+            type="text"
+            id="simple-search"
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5"
+            placeholder="Search"
+            required
+            oninput="handleInput()"
+          />
+          <div
+            id="suggestions"
+            class="hidden text-black absolute z-10 w-full bg-white shadow-md rounded-lg mt-4"
+          >
+            <div class="text-sm p-2 text-stone-500">Quick links</div>
+            <% if (food_list.length) { %>
+            <ul id="quick-links" class="divide-y divide-gray-200">
+              <% for (let i = 0; i < Math.min(food_list.length, 3); i++) { %>
+              <li
+                class="px-4 py-2 hover:bg-gray-100 hover:rounded-lg cursor-pointer text-black"
+              >
+                <a
+                  href="mailto:support@pinussylvestris.com?subject=<%= food_list[i].title %>"
+                  ><%= food_list[i].title %></a
+                >
+              </li>
+              <% } %>
+            </ul>
+            <% } else { %>
+            <p class="px-4 py-2">No matching articles found.</p>
+            <% } %>
+          </div>
+        </div>
+      </form>
+    </div>
+
     <iframe name="noneFrame" id="noneFrame" style="display: none"></iframe>
     <div class="btn-active" hidden></div>
     <div class="m-4 lg:m-8 flex flex-col text-stone-900 gap-4">
@@ -52,6 +126,50 @@
         food.category})}); %> <% }); %>
       </div>
     </div>
+
+    <script>
+      const searchInput = document.querySelector("#simple-search");
+      const suggestions = document.querySelector("#suggestions");
+      searchInput.addEventListener("click", () => {
+        suggestions.classList.remove("hidden");
+      });
+
+      document.addEventListener("click", (event) => {
+        if (!event.target.closest("#search-section")) {
+          suggestions.classList.add("hidden");
+        }
+      });
+
+      function searching(articles) {
+        const inputValue = searchInput.value.toLowerCase().trim();
+        const quickLinks = document.querySelector("#quick-links");
+
+        // Check if the articles parameter is an array with a filter method
+        if (Array.isArray(articles) && typeof articles.filter === "function") {
+          const filteredArticles = articles.filter((item) =>
+            item.title.toLowerCase().includes(inputValue)
+          );
+
+          if (filteredArticles.length > 0) {
+            const filteredLinks = filteredArticles
+              .map((item) => {
+                return `<li class="px-4 py-2 hover:bg-gray-100 cursor-pointer">
+              <a href="mailto:support@pinussylvestris.com?subject=${item.title}">
+                ${item.title}
+              </a>
+            </li>`;
+              })
+              .join("");
+            quickLinks.innerHTML = filteredLinks;
+          } else {
+            quickLinks.innerHTML =
+              '<p class="px-4 py-2">No matching articles found.</p>';
+          }
+        } else {
+          console.error("articles is not an array with a filter method");
+        }
+      }
+    </script>
   </body>
   <footer><%- include('./partials/footer'); %></footer>
 </html>

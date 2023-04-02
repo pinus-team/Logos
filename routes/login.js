@@ -20,7 +20,6 @@ export const loginPostHandler = (req, res) => {
 			res.redirect("/profile");
 		},
 		(error) => {
-			console.log(error);
 			res.redirect("/login");
 		}
 	);

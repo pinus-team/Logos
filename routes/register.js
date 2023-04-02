@@ -17,7 +17,6 @@ export const registerPostHandler = (req, res) => {
 			res.redirect("/login");
 		},
 		(error) => {
-			console.log(error);
 			res.redirect("/register");
 		}
 	);

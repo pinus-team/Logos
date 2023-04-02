@@ -51,9 +51,7 @@ export const orderGetHandler = async (req, res) => {
 export const profilePostHandler = async (req, res) => {
 	if (req.body.address) {
 		if (!req.body.change_latlon) {
-			console.log("Requesting Geolocation service.");
 			const locationString = `${req.body.address}, ${req.body.city}, ${req.body.province} ${req.body.postal_code}`;
-			console.log(locationString);
 			const geoloc = await axios
 				.get(
 					`http://api.positionstack.com/v1/forward?access_key=${API_KEY}&query=${locationString}`

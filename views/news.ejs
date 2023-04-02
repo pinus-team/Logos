@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" class="h-screen">
+	<head>
+		<%- include('./partials/head'); %>
+	</head>
+	<body
+		class="flex flex-col font-serif text-stone-50 bg-stone-900 overflow-x-hidden relative justify-between min-h-screen h-full">
+		<rect class="w-full h-full absolute -z-50 bg-logos opacity-10"></rect>
+		<%- include('./partials/navbar'); %>
+		<div class="flex flex-col flex-1 p-4 lg:p-12">
+			<div
+				class="flex flex-col bg-news p-4 lg:p-12 shadow-md text-stone-900 gap-4">
+				<a href="/" class="text-xs lg:text-sm hover:text-stone-400">Home</a>
+				<p class="text-xl lg:text-3xl"><%= news.title %></p>
+				<hr class="border-0 border-b my-2 border-stone-900">
+				<p class="text-sm lg:text-base"><%= news.content %></p>
+			</div>
+		</div>
+	</body>
+	<footer><%- include('./partials/footer'); %></footer>
+</html>

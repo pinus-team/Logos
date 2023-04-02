@@ -1,0 +1,50 @@
+name: Deploy on push [Development]
+run-name: Deploy to development by @${{ github.actor }}
+on:
+    push:
+        branches:
+            - develop
+
+env:
+    JWT_SECRET: ${{ secrets.JWT_SECRET }}
+
+jobs:
+    push-image:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v3
+            - name: Setup QEMU
+              uses: docker/setup-qemu-action@v2
+            - name: Setup Docker Buildx
+              uses: docker/setup-buildx-action@v2
+            - name: Login to DockerHub
+              uses: docker/login-action@v1
+              with:
+                  username: ${{ secrets.DOCKER_USERNAME }}
+                  password: ${{ secrets.DOCKER_TOKEN }}
+            - name: Build and Push
+              uses: docker/build-push-action@v4
+              with:
+                  context: .
+                  push: true
+                  tags: ${{ secrets.DOCKER_USERNAME }}/logos:latest
+    deploy:
+        needs: push-image
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v3
+            - name: Login to DockerHub
+              uses: docker/login-action@v1
+              with:
+                  username: ${{ secrets.DOCKER_USERNAME }}
+                  password: ${{ secrets.DOCKER_TOKEN }}
+            - name: Docker compose run
+              run: |
+                  mkdir logos
+                  cp docker-compose.yaml logos/docker-compose.yaml
+                  cd logos
+                  docker-compose -H tcp://${{ secrets.HOST_SERVER }} down
+                  docker-compose -H tcp://${{ secrets.HOST_SERVER }} pull
+                  docker-compose -H tcp://${{ secrets.HOST_SERVER }} up -d

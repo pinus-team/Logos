@@ -1,0 +1,31 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+	.btn-inactive {
+		@apply bg-stone-200 border-transparent;
+	}
+	.btn-active {
+		@apply bg-stone-50 border-stone-900;
+	}
+	.btn-bag-inactive {
+		@apply text-stone-900;
+	}
+	.btn-bag-active {
+		@apply text-stone-500;
+	}
+}
+
+@layer base {
+	input::-webkit-outer-spin-button,
+	input::-webkit-inner-spin-button {
+		-webkit-appearance: none;
+		margin: 0;
+	}
+
+	/* Firefox */
+	input[type="number"] {
+		-moz-appearance: textfield;
+	}
+}

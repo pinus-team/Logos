@@ -1,0 +1,11 @@
+services:
+  frontend:
+    image: mansmooth/logos:latest
+    environment:
+      - HOST=172.17.0.1
+      - JWT_SECRET=${JWT_SECRET}
+      # epic
+      - GEOLOC_API_KEY=dd56c76afc924c9176dca026d02a6367
+    restart: unless-stopped
+    ports:
+      - "80:3000"

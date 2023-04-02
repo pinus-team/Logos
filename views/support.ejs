@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-p-16 snap-y snap-mandatory">
+  <head>
+    <%- include('./partials/head'); %>
+  </head>
+  <body class="font-sans text-stone-900 bg-news">
+    <%- include('./partials/navbar'); %>
+
+    <!-- Gallery -->
+    <section class="overflow-hidden w-full bg-white snap-start">
+      <div class="w-full relative">
+        <div class="-m-1 flex flex-wrap lg:-m-2">
+          <div class="flex w-full lg:w-1/3 flex-wrap">
+            <div class="w-1/2 p-1 lg:p-2">
+              <img
+                alt="gallery"
+                class="block h-60 w-full object-cover object-center"
+                src="img/fried.jpg"
+              />
+            </div>
+            <div class="w-1/2 p-1 lg:p-2">
+              <img
+                alt="gallery"
+                class="block h-60 w-full object-cover object-center"
+                src="img/main-cheff.jpeg"
+              />
+            </div>
+            <div class="w-full p-1 lg:p-2">
+              <img
+                alt="gallery"
+                class="block h-60 w-full object-cover object-center"
+                src="img/cooking.png"
+              />
+            </div>
+          </div>
+          <div class="hidden lg:flex w-1/3 flex-wrap">
+            <div class="w-full p-1 lg:p-2">
+              <img
+                alt="gallery"
+                class="block h-60 w-full object-cover object-center"
+                src="img/group-dinning.jpg"
+              />
+            </div>
+            <div class="w-1/2 p-1 lg:p-2">
+              <img
+                alt="gallery"
+                class="block h-60 w-full object-cover object-center"
+                src="img/portions.jpg"
+              />
+            </div>
+            <div class="w-1/2 p-1 lg:p-2">
+              <img
+                alt="gallery"
+                class="block h-60 w-full object-cover object-center"
+                src="img/cheff.jpg"
+              />
+            </div>
+          </div>
+          <div class="hidden lg:flex w-1/3 flex-wrap">
+            <div class="w-1/2 p-1 lg:p-2">
+              <img
+                alt="gallery"
+                class="block h-60 w-full object-cover object-center"
+                src="img/cooking-hotpot.png"
+              />
+            </div>
+            <div class="w-1/2 p-1 lg:p-2">
+              <img
+                alt="gallery"
+                class="block h-60 w-full object-cover object-center"
+                src="img/sharing.jpg"
+              />
+            </div>
+            <div class="w-full p-1 lg:p-2">
+              <img
+                alt="gallery"
+                class="block h-60 w-full object-cover object-center"
+                src="img/serving.jpg"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- support form -->
+    <section class="overflow-hidden w-screen bg-white snap-start">
+      <div class="p-6 flex flex-col items-center justify-center">
+        <!-- header -->
+        <div class="grid grid-cols-1 justify-items-center m-6 mb-10">
+          <p class="text-xl md:text-xl lg:text-3xl font-bold text-black">
+            Pinus Sylvestris Support
+          </p>
+        </div>
+
+        <!-- search -->
+        <div class="w-full">
+          <form class="flex items-center justify-center">
+            <label for="simple-search" class="sr-only">Search</label>
+            <div class="relative w-2/3">
+              <div
+                class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none"
+              >
+                <svg
+                  aria-hidden="true"
+                  class="w-5 h-5 text-gray-500 dark:text-gray-400"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
+                    clip-rule="evenodd"
+                  ></path>
+                </svg>
+              </div>
+
+              <!-- <script defer>
+                let titles = [];
+              </script>
+              <% article.forEach(item => { %>
+              <script defer>
+                titles.push("<%= item.title %>");
+              </script>
+              <% }) %> -->
+
+              <script defer>
+                function handleInput() {
+                  const articles = <%- JSON.stringify(article) %>;
+                  searching(articles);
+                }
+              </script>
+
+              <input
+                type="text"
+                id="simple-search"
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5"
+                placeholder="Search"
+                required
+                oninput="handleInput()"
+              />
+              <div
+                id="suggestions"
+                class="hidden absolute z-10 w-full bg-white shadow-md rounded-lg mt-4"
+              >
+                <div class="text-sm p-2 text-stone-500">Quick links</div>
+                <% if (article.length) { %>
+                <ul id="quick-links" class="divide-y divide-gray-200">
+                  <% for (let i = 0; i < Math.min(article.length, 3); i++) { %>
+                  <li class="px-4 py-2 hover:bg-gray-100 cursor-pointer">
+                    <a
+                      href="mailto:support@pinussylvestris.com?subject=<%= article[i].title %>"
+                      ><%= article[i].title %></a
+                    >
+                  </li>
+                  <% } %>
+                </ul>
+                <% } else { %>
+                <p class="px-4 py-2">No matching articles found.</p>
+                <% } %>
+              </div>
+            </div>
+          </form>
+        </div>
+        <!-- quick support -->
+        <div class="flex flex-col md:flex-row w-2/3 ">
+          <div class="flex-1 py-2 px-4">
+            <a
+              class="text-black underline flex-1 h-full"
+              href="mailto:support@pinussylvestris.com?subject=Forgot account or password"
+            >
+              <div class="flex flex-col relative items-center">
+                <img src="svg/password.svg" class="my-auto w-1/2" />
+                <p>Forgot account or password</p>
+              </div>
+            </a>
+          </div>
+          <div class="flex-1 py-2 px-4">
+            <a
+              class="text-black underline flex-1 h-full"
+              href="mailto:support@pinussylvestris.com?subject=Services"
+            >
+              <div class="flex flex-col relative items-center">
+                <img src="svg/hander.svg" class="my-auto w-1/2" />
+                <p class="flex-initial">Services</p>
+              </div>
+            </a>
+          </div>
+          <div class="flex-1 py-2 px-4">
+            <a
+              class="text-black underline flex-1 h-full"
+              href="mailto:support@pinussylvestris.com?subject=Billing and Subscriptions"
+            >
+              <div class="flex flex-col relative items-center">
+                <img src="svg/billing.svg" class="my-auto w-1/2" />
+                <p>Billing and subscriptions</p>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="bg-gray-200 flex justify-center snap-start">
+      <div
+        class="grid grid-cols-1 justify-items-center w-screen p-6 m-16 bg-white h-auto"
+      >
+        <div class="p-6 text-center flex flex-col gap-y-4">
+          <p class="text-base md:text-xl lg:text-3xl font-bold text-black">
+            Get started
+          </p>
+          <p class="text-gray-500">
+            The quickest and easiest instructions for use.
+          </p>
+          <a
+            class="text-primary flex flex-row items-center place-content-center"
+            href="https://docs.google.com/document/d/1ClY9N9HqmfgsyROvdsoMQyaA7cwzdyOqnUyFdwsyW2Y/edit?usp=sharing"
+            >Explore more
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="2"
+              stroke="currentColor"
+              class="w-4 h-6 drop-shadow-md text-ger"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M8.25 4.5l7.5 7.5-7.5 7.5"
+              />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </section>
+    <script>
+      const searchInput = document.querySelector("#simple-search");
+      const suggestions = document.querySelector("#suggestions");
+      searchInput.addEventListener("click", () => {
+        suggestions.classList.remove("hidden");
+      });
+
+      document.addEventListener("click", (event) => {
+        if (!event.target.closest(".relative")) {
+          suggestions.classList.add("hidden");
+        }
+      });
+
+      function searching(articles) {
+        const inputValue = searchInput.value.toLowerCase().trim();
+        const quickLinks = document.querySelector("#quick-links");
+
+        const defaultLinks = `
+          <% if (article.length) { %>
+            <ul id="quick-links" class="divide-y divide-gray-200">
+              <% for (let i = 0; i < Math.min(article.length, 3); i++) { %>
+                <li class="px-4 py-2 hover:bg-gray-100 cursor-pointer">
+                  <a href="mailto:support@pinussylvestris.com?subject=<%= article[i].title %>">
+                    <%= article[i].title %>
+                  </a>
+                </li>
+              <% } %>
+            </ul>
+          <% } else { %>
+            <p class="px-4 py-2">No matching articles found.</p>
+          <% } %>
+        `;
+
+        if (inputValue === "") {
+          quickLinks.innerHTML = defaultLinks;
+        }
+
+
+
+        // Check if the articles parameter is an array with a filter method
+        if (Array.isArray(articles) && typeof articles.filter === "function") {
+          const filteredArticles = articles.filter((item) =>
+            item.title.toLowerCase().includes(inputValue)
+          );
+
+          if (filteredArticles.length > 0) {
+            const filteredLinks = filteredArticles
+              .map((item) => {
+                return `<li class="px-4 py-2 hover:bg-gray-100 cursor-pointer">
+              <a href="mailto:support@pinussylvestris.com?subject=${item.title}">
+                ${item.title}
+              </a>
+            </li>`;
+              })
+              .join("");
+            quickLinks.innerHTML = filteredLinks;
+          } else {
+            quickLinks.innerHTML =
+              '<p class="px-4 py-2">No matching articles found.</p>';
+          }
+        } else {
+          console.error("articles is not an array with a filter method");
+        }
+      }
+    </script>
+  </body>
+  <footer><%- include('./partials/footer'); %></footer>
+</html>

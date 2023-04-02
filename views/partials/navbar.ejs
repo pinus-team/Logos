@@ -1,0 +1,58 @@
+<div
+	class="top-0 sticky shadow-lg z-[1020] text-stone-50 flex flex-col h-fit"
+	data-te-dropdown-ref
+	data-te-dropdown-position="dropstart">
+	<div
+		class="px-4 flex flex-row items-center justify-between bg-stone-900 h-16">
+		<a href="/" class="flex flex-row items-center px-5 select-none">
+			<img src="/img/Pinus_Sylvestris.webp" class="h-12" />
+			<h1 class="font-serif text-3xl mx-4 hidden lg:block">
+				<%= title %>
+			</h1>
+		</a>
+		<%- include('./nav'); %>
+	</div>
+	<div id="cart" class="transition-all !visible hidden" data-te-collapse-item>
+		<div
+			class="flex p-4 lg:p-9 pt-2 flex-col lg:flex-row gap-2 h-full-with-nav bg-stone-900">
+			<div
+				class="flex flex-col gap-2 lg:hidden transition-all text-inherit justify-items-start text-base px-4">
+				<hr class="border-0 border-b border-stone-400 my-2" />
+				<% endpoints.forEach((endpoint) => { %>
+				<a
+					href="<%= endpoint.path %>"
+					class="transition-all hover:text-stone-400">
+					<%= endpoint.name %>
+				</a>
+				<% }); %>
+				<hr class="border-0 border-b border-stone-400 my-2" />
+				<% if(user) { %>
+				<p class="font-bold text-lg">Logged in as: <%= user.username %></p>
+				<a href="/profile" class="transition-all hover:text-stone-400">
+					My Profile
+				</a>
+				<% if(user.role > 0) { %>
+				<a
+					href="/restaurant"
+					class="transition-all hover:text-stone-400">
+					Restaurant
+				</a>
+				<% } %>
+				<a href="/bag" class="transition-all hover:text-stone-400">
+					My Bag
+				</a>
+				<a href="/logout" class="transition-all hover:text-stone-400">
+					Logout
+				</a>
+				<% } else { %>
+				<a href="/login" class="transition-all hover:text-stone-400">
+					Login
+				</a>
+				<a href="/register" class="transition-all hover:text-stone-400">
+					Register
+				</a>
+				<% } %>
+			</div>
+		</div>
+	</div>
+</div>

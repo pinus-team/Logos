@@ -1,0 +1,43 @@
+<div class="top-0 text-stone-50 h-fit bg-stone-900 p-8 snap-end">
+	<div class="flex flex-col lg:flex-row lg:justify-start gap-4 lg:gap-12 relative">
+		<div class="flex font-sans justify-center gap-2">
+			<p class="text-3xl lg:text-5xl font-bold">Pinus</p>
+			<div class="flex flex-col r gap-1">
+				<p class="p-0 lg:py-1 text-2xl lg:text-3xl font-bold">
+					Sylvestris
+				</p>
+				<hr class="border-0 border-t-2 border-primary" />
+			</div>
+		</div>
+		<div class="group flex flex-row gap-4">
+			<div class="transition-all flex-full hidden lg:block border-r border-r-primary lg:group-hover:border-r-4"></div>
+			<div class="flex flex-col gap-1">
+				<p class="font-bold my-2">Company</p>
+				<a href="/story" class="text-sm hover:brightness-75 transition-transform hover:translate-x-1">About Us</a>
+				<a href="/support" class="text-sm hover:brightness-75 transition-transform hover:translate-x-1">Support</a>
+			</div>
+		</div>
+		<div class="group flex flex-row gap-4">
+			<div class="transition-all flex-full hidden lg:block border-r border-r-primary lg:group-hover:border-r-4"></div>
+			<div class="flex flex-col gap-1">
+				<p class="font-bold my-2">My Account</p>
+				<a href="/login" class="text-sm hover:brightness-75 transition-transform hover:translate-x-1">Login/Register</a>
+				<a href="/profile" class="text-sm hover:brightness-75 transition-transform hover:translate-x-1">My Profile</a>
+				<a href="/bag" class="text-sm hover:brightness-75 transition-transform hover:translate-x-1">My Bag</a>
+			</div>
+		</div>
+		<% if(user && user.role > 0) { %>
+			<div class="group flex flex-row gap-4">
+				<div class="transition-all flex-full hidden lg:block border-r border-r-primary lg:group-hover:border-r-4"></div>
+				<div class="flex flex-col gap-1">
+					<p class="font-bold my-2">Restaurant</p>
+					<a href="/restaurant" class="text-sm hover:brightness-75 transition-transform hover:translate-x-1">Today</a>
+					<a href="/restaurant/history" class="text-sm hover:brightness-75 transition-transform hover:translate-x-1">History</a>
+					<a href="/restaurant/summary" class="text-sm hover:brightness-75 transition-transform hover:translate-x-1">Summary</a>
+					<a href="/restaurant/delivery" class="text-sm hover:brightness-75 transition-transform hover:translate-x-1">Delivery</a>
+				</div>
+			</div>
+		<% } %>
+	</div>
+	<p class="mt-4 lg:m-0 text-2xs">© 2023 Pinus, Inc., All Rights Reserved.</p>
+</div>

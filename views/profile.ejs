@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<%- include('./partials/head'); %>
+        <script src="/js/profile.js"></script>
+	</head>
+	<body
+		class="font-sans text-stone-900 bg-stone-100 relative">
+        <%- include('./partials/navbar'); %>
+        <div class="flex flex-col gap-8 p-8">
+            <p class="text-xl lg:text-3xl text-center lg:text-left">My Account</p>
+            <div class="flex flex-col lg:flex-row gap-8">
+                <div class="flex flex-row lg:flex-col items-start w-full justify-around lg:justify-start lg:w-1/12 gap-4">
+                    <a class="font-bold text-sm lg:text-base flex-1 lg:flex-none px-4 py-2 lg:p-0 shadow-md lg:shadow-none bg-stone-50 lg:bg-transparent" href="/profile">My Profile</a>
+                    <a class="text-sm lg:text-base flex-1 lg:flex-none px-4 py-2 lg:p-0 shadow-md lg:shadow-none bg-stone-50 lg:bg-transparent" href="/profile/address">My Address</a>
+                    <a class="text-sm lg:text-base flex-1 lg:flex-none px-4 py-2 lg:p-0 shadow-md lg:shadow-none bg-stone-50 lg:bg-transparent" href="/profile/orders">My Orders</a>
+                </div>
+                <div class="flex flex-col flex-1 shadow-md bg-stone-50 p-8 gap-4">
+                    <p class="text-xl lg:text-3xl" >My Profile</p>
+                    <div class="flex flex-col gap-2">
+                        <p class="text-sm lg:text-base">Personal Information</p>
+                        <hr
+                            class="border-0 border-b border-stone-900 opacity-80" />
+                    </div>
+                    <div class="flex flex-col lg:flex-row justify-between gap-4">
+                        <p class="text-3xs lg:text-xs">Your data will not be shared on any other platform.</p>
+                        <form id="info" class="flex flex-col gap-4 flex-1 lg:max-w-[50%]" method="post">
+                            <div class="flex flex-col gap-1">
+                                <label for="first_name" class="text-xs lg:text-base font-bold"
+                                    >First name</label
+                                >
+                                <input
+                                    type="text"
+                                    class="transition-all p-2 bg-stone-50 border border-stone-900 disabled:border-none disabled:bg-stone-200 focus:bg-stone-200 focus:outline-stone-600 text-xs lg:text-base"
+                                    name="first_name"
+                                    id="first_name"
+                                    value="<%= user.first_name %>"
+                                    disabled
+                                    required/>
+                            </div>
+                            <div class="flex flex-col gap-1">
+                                <label for="last_name" class="text-xs lg:text-base font-bold"
+                                    >Last name</label
+                                >
+                                <input
+                                    type="text"
+                                    class="transition-all p-2 bg-stone-50 border border-stone-900 disabled:border-none disabled:bg-stone-200 focus:bg-stone-200 focus:outline-stone-600 text-xs lg:text-base"
+                                    name="last_name"
+                                    value="<%= user.last_name %>"
+                                    disabled
+                                    id="last_name" required/>
+                            </div>
+                            <div class="flex flex-col gap-1">
+                                <label for="phone_number" class="text-xs lg:text-base font-bold"
+                                    >Phone</label
+                                >
+                                <input
+                                    type="tel"
+                                    class="transition-all p-2 bg-stone-50 border border-stone-900 disabled:border-none disabled:bg-stone-200 focus:bg-stone-200 focus:outline-stone-600 text-xs lg:text-base"
+                                    name="phone_number"
+                                    id="phone_number"
+                                    value="<%= user.phone_number %>"
+                                    pattern="0[0-9]{9}"
+                                    disabled
+                                    required/>
+                            </div>
+                            <div class="flex flex-row justify-between gap-4">
+                                <button
+                                    type="button"
+                                    class="transition-all bg-primary p-2 text-stone-900 text-xs lg:text-base flex-1 shadow-md"
+                                    onclick="enableEdit(this, '#info')"
+                                >
+                                    Edit
+                                </button>
+                                <button
+                                    type="submit"
+                                    class="transition-all bg-primary p-2 text-stone-900 text-xs lg:text-base flex-1 shadow-md disabled:saturate-0"
+                                    disabled
+                                >
+                                    Save
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="flex flex-col gap-2">
+                        <p class="text-sm lg:text-base">Email</p>
+                        <hr
+                            class="border-0 border-b border-stone-900 opacity-80" />
+                    </div>
+                    <div id="email" class="flex flex-col lg:flex-row justify-between gap-4">
+                        <p class="text-3xs lg:text-xs">Your data will not be shared on any other platform.</p>
+                        <form id="info" class="flex flex-col gap-4 flex-1 lg:max-w-[50%]" method="post" accept="/profile">
+                            <div class="flex flex-col gap-1">
+                                <label for="email" class="text-xs lg:text-base font-bold"
+                                    >Email</label
+                                >
+                                <input
+                                    type="email"
+                                    class="transition-all p-2 bg-stone-50 border border-stone-900 disabled:border-none disabled:bg-stone-200 focus:bg-stone-200 focus:outline-stone-600 text-xs lg:text-base"
+                                    name="email"
+                                    id="email"
+                                    value="<%= user.email %>"
+                                    disabled
+                                    required/>
+                            </div>
+                            <div class="flex flex-row justify-between gap-4">
+                                <button
+                                    type="button"
+                                    class="transition-all bg-primary p-2 text-stone-900 text-xs lg:text-base flex-1 shadow-md"
+                                    onclick="enableEdit(this, '#email')"
+                                >
+                                    Edit
+                                </button>
+                                <button
+                                    type="submit"
+                                    class="transition-all bg-primary p-2 text-stone-900 text-xs lg:text-base flex-1 shadow-md disabled:saturate-0"
+                                    disabled
+                                >
+                                    Save
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+	</body>
+	<footer><%- include('./partials/footer'); %>
+</html>
